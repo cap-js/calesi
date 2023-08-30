@@ -5,5 +5,8 @@
     "@cap-js/change-tracking": "*",
     "@capire/incidents": "*"
   },
+  "devDependencies": {
+    "@cap-js/sqlite": "*"
+  },
   "private": true
 }

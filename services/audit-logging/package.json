@@ -15,22 +15,5 @@
   "scripts": {
     "start": "cds-serve"
   },
-  "cds": {
-    "features": {
-      "serve_on_root": true
-    },
-    "requires": {
-      "-audit-log": false,
-      "[development]": {
-        "auth": {
-          "users": {
-            "alice": {
-              "roles": ["support"]
-            }
-          }
-        }
-      }
-    }
-  },
   "private": true
 }
