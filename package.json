@@ -1,0 +1,7 @@
+{
+  "workspaces": [
+    "incidents-app",
+    "services/*",
+    "plugins/*"
+  ]
+}

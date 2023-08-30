@@ -1,0 +1,14 @@
+**/node_modules/
+**/gen/
+**/_out/
+**/dist/
+**/edmx/
+**/@types
+
+.cdsrc-private.json
+.DS_Store
+
+*.sqlite
+*.db
+
+# plugins/*/

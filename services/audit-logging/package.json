@@ -1,0 +1,36 @@
+{
+  "name": "@cap-js/audit-logging-sample",
+  "version": "0.0.1",
+  "description": "Sample app for developing @cap-js/audit-logging",
+  "repository": "cap-js/audit-logging-sample",
+  "dependencies": {
+    "@capire/incidents": "*",
+    "@cap-js/audit-logging": "*",
+    "@sap/cds": "*",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "*"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "features": {
+      "serve_on_root": true
+    },
+    "requires": {
+      "-audit-log": false,
+      "[development]": {
+        "auth": {
+          "users": {
+            "alice": {
+              "roles": ["support"]
+            }
+          }
+        }
+      }
+    }
+  },
+  "private": true
+}

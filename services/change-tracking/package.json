@@ -1,0 +1,9 @@
+{
+  "name": "@capire/change-tracking-sample",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/change-tracking": "*",
+    "@capire/incidents": "*"
+  },
+  "private": true
+}
