@@ -1,6 +1,6 @@
 # CAP Reference Apps for Calesi
 
-Wellcome to the reference app monorepo for Calesi projects ("Calesi" stands for CAP-level Service Interfaces).
+Welcome to the reference app monorepo for Calesi projects ("Calesi" stands for CAP-level Service Interfaces).
 
 We use this repository to develop both, the basic reference application on an incidents management use case, as well as enhancements to that showcasing how to use individual BTP services and features.
 
