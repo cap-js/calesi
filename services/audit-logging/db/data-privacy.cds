@@ -13,11 +13,6 @@ annotate Customers with @PersonalData: {
   creditCardNo @PersonalData.IsPotentiallySensitive;
 }
 
-// // In addition we add a field for sensitive data
-// extend Customers with {
-//   creditCardNo : String @PersonalData.IsPotentiallySensitive;
-// }
-
 // Annotate entity Addresses to contain Customers details
 using { sap.capire.incidents.Addresses } from '@capire/incidents';
 
