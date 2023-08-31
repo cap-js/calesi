@@ -15,5 +15,21 @@
   "scripts": {
     "start": "cds-serve"
   },
+  "cds": {
+    "requires": {
+      "[development]": {
+        "auth": {
+          "users": {
+            "alice": {
+              "roles": ["support"]
+            }
+          }
+        },
+        "audit-log": {
+          "handle": ["READ", "WRITE"]
+        }
+      }
+    }
+  },
   "private": true
 }
