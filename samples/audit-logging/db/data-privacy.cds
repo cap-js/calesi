@@ -1,5 +1,5 @@
 // Annotate entity Customers to contain personal data
-using { sap.capire.incidents.Customers } from '@capire/incidents';
+using { sap.capire.incidents.Customers } from './schema';
 
 annotate Customers with @PersonalData: {
   EntitySemantics: 'DataSubject',
@@ -14,7 +14,7 @@ annotate Customers with @PersonalData: {
 }
 
 // Annotate entity Addresses to contain Customers details
-using { sap.capire.incidents.Addresses } from '@capire/incidents';
+using { sap.capire.incidents.Addresses } from './schema';
 
 annotate Addresses with @PersonalData: {
   EntitySemantics: 'DataSubjectDetails'
@@ -26,7 +26,7 @@ annotate Addresses with @PersonalData: {
 }
 
 // Annotate entity Incidents to contain Customers-related data
-using { sap.capire.incidents.Incidents } from '@capire/incidents';
+using { sap.capire.incidents.Incidents } from './schema';
 
 annotate Incidents with @PersonalData: {
   EntitySemantics: 'Other'
