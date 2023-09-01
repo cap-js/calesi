@@ -17,12 +17,7 @@
   "cds": {
     "requires": {
       "@capire/audit-logging": {
-        "model": "@capire/audit-logging/db/data-privacy.cds"
-      },
-      "[development]": {
-        "audit-log": {
-          "handle": ["READ", "WRITE"]
-        }
+        "model": "@capire/audit-logging/srv/data-privacy"
       }
     }
   },
