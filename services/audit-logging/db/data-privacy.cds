@@ -3,29 +3,21 @@ using { sap.capire.incidents.Customers } from '@capire/incidents';
 
 annotate Customers with @PersonalData: {
   EntitySemantics: 'DataSubject',
-  DataSubjectRole: 'Customer',
+  DataSubjectRole: 'Customer'
 } {
-  firstName     @PersonalData.IsPotentiallyPersonal;
-  lastName      @PersonalData.IsPotentiallyPersonal;
-  email         @PersonalData: {
-    FieldSemantics: 'DataSubjectID',
-    IsPotentiallyPersonal: true,
-  };
-  phone         @PersonalData.IsPotentiallyPersonal;
+  ID           @PersonalData.FieldSemantics: 'DataSubjectID';
+  firstName    @PersonalData.IsPotentiallyPersonal;
+  lastName     @PersonalData.IsPotentiallyPersonal;
+  email        @PersonalData.IsPotentiallyPersonal;
+  phone        @PersonalData.IsPotentiallyPersonal;
+  creditCardNo @PersonalData.IsPotentiallySensitive;
 }
-
-// In addition we add a field for sensitive data
-extend Customers with {
-  creditCardNo : String @PersonalData.IsPotentiallySensitive;
-}
-
 
 // Annotate entity Addresses to contain Customers details
 using { sap.capire.incidents.Addresses } from '@capire/incidents';
 
 annotate Addresses with @PersonalData: {
-  EntitySemantics: 'DataSubjectDetails',
-  DataSubjectRole: 'Address',
+  EntitySemantics: 'DataSubjectDetails'
 } {
   customer      @PersonalData.FieldSemantics: 'DataSubjectID';
   city          @PersonalData.IsPotentiallyPersonal;
@@ -33,13 +25,11 @@ annotate Addresses with @PersonalData: {
   streetAddress @PersonalData.IsPotentiallyPersonal;
 }
 
-
 // Annotate entity Incidents to contain Customers-related data
 using { sap.capire.incidents.Incidents } from '@capire/incidents';
 
 annotate Incidents with @PersonalData: {
-  EntitySemantics: 'Other',
-  DataSubjectRole: 'Customer',
+  EntitySemantics: 'Other'
 } {
-  customer      @PersonalData.FieldSemantics: 'DataSubjectID';
+  customer @PersonalData.FieldSemantics: 'DataSubjectID';
 }
