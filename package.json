@@ -1,7 +1,7 @@
 {
   "workspaces": [
     "incidents-app",
-    "services/*",
+    "samples/*",
     "plugins/*"
   ]
 }

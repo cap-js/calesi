@@ -1,19 +1,16 @@
 {
-  "name": "@capire/change-tracking",
+  "name": "my-mashup",
   "version": "1.0.0",
   "dependencies": {
     "@cap-js/change-tracking": "*",
+    "@cap-js/audit-logging": "*",
+    "@cap-js/notifications": "*",
+    "@capire/change-tracking": "*",
+    "@capire/audit-logging": "*",
     "@capire/incidents": "*"
   },
   "devDependencies": {
     "@cap-js/sqlite": "*"
-  },
-  "cds": {
-    "requires": {
-      "@capire/change-tracking": {
-        "model": "@capire/change-tracking/srv/change-tracking.cds"
-      }
-    }
   },
   "private": true
 }

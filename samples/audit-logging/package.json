@@ -1,8 +1,7 @@
 {
-  "name": "@cap-js/audit-logging-sample",
+  "name": "@capire/audit-logging",
   "version": "0.0.1",
   "description": "Sample app for developing @cap-js/audit-logging",
-  "repository": "cap-js/audit-logging-sample",
   "dependencies": {
     "@capire/incidents": "*",
     "@cap-js/audit-logging": "*",
@@ -17,6 +16,9 @@
   },
   "cds": {
     "requires": {
+      "@capire/audit-logging": {
+        "model": "@capire/audit-logging/db/data-privacy.cds"
+      },
       "[development]": {
         "audit-log": {
           "handle": ["READ", "WRITE"]
