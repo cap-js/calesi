@@ -1,0 +1,2 @@
+GET http://localhost:4004/odata/v4/processors/Customers
+Authorization: Basic alice:wonderland
