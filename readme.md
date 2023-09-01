@@ -10,7 +10,7 @@ The folders in here are:
 
     The incidents base application used for all examples         |
 
-- **`services/...`**
+- **`samples/...`**
 
     Enhancements to the incidents-app showcasing how to use individual services, like change tracking, audit logging, messaging, and so forth...
 
@@ -48,7 +48,7 @@ cds w incidents-app
 Run the incidents app with **one** of the enhancements:
 
 ```sh
-cds w services/change-tracking
+cds w samples/change-tracking
 ```
 
 
@@ -69,9 +69,9 @@ In order to run the incidents app with more than one enhancement...
 Follow these steps to add a new Calesi case:
 
 1. Clone this repository as given above
-2. Add a new subfolder in `services/`, e.g.:
+2. Add a new subfolder in `samples/`, e.g.:
    ```sh
-   cds init services/change-tracking
+   cds init samples/change-tracking
    ```
 3. If the service plugin is not yet released, clone the repo into a respective subfolder in `plugins/`, e.g.
    ```sh
