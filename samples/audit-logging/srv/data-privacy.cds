@@ -1,4 +1,18 @@
-using { sap.capire.incidents as my } from '@capire/incidents';
+//using { sap.capire.incidents as my } from '../../../incidents-app/srv/processors-service';
+using { sap.capire.incidents as my} from '@capire/incidents';
+
+
+entity sap.capire.incidents.Addresses {
+  customer      : Association to my.Customers;
+  city          : my.City;
+  postCode      : String;
+  streetAddress : String;
+}
+
+extend my.Customers with {
+  creditCardNo  : String(16) @assert.format: '^[1-9]\d{15}$';
+  addresses     : Composition of many sap.capire.incidents.Addresses;
+};
 
 annotate my.Customers with @PersonalData: {
   EntitySemantics: 'DataSubject',
@@ -21,7 +35,7 @@ annotate my.Addresses with @PersonalData: {
   streetAddress @PersonalData.IsPotentiallyPersonal;
 }
 
-annotate my.Incidents with @PersonalData: {
+annotate sap.capire.incidents.Incidents with @PersonalData: {
   EntitySemantics: 'Other'
 } {
   customer @PersonalData.FieldSemantics: 'DataSubjectID';
