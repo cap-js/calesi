@@ -1,15 +1,14 @@
 using { sap.capire.incidents } from '@capire/incidents';
-using { Image, Attachments } from '@cap-js/attachments';
+using { Image } from '@cap-js/attachments';
 
-// extend incidents.Incidents with {
-//   report: Attachments;
-// }
-
+// Add customer avatars and annotate as type 'Image'
 extend incidents.Customers with {
   avatar: Image;
-  imageType: String;
 }
 
+// Same as in Incidents app, but with extra (image) column
+// for customer avatars
+// See: https://sapui5.hana.ondemand.com/sdk/#/topic/492bc791a7bd41cd9932fdf5d3aa2656.html
 annotate ProcessorsService.Incidents with @(
     UI.LineItem : [
         {
@@ -19,14 +18,14 @@ annotate ProcessorsService.Incidents with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : customer.name,
-            Label : '{i18n>Customer}',
+            Value : customer.avatar,
+            Label: '{i18n>Avatar}'
         },
+        // This adds an 'avatar' image column before customer
         {
             $Type : 'UI.DataField',
-            Value : customer.avatar_imageUrl,
-            Label: '{i18n>Avatar}',
-            ![@UI.Importance] : #High
+            Value : customer.name,
+            Label : '{i18n>Customer}',
         },
         {
             $Type : 'UI.DataField',
