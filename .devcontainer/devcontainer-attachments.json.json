@@ -1,0 +1,29 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "https://github.com/cap-js/incidents-app": {
+          "permissions": "read-all"
+        },
+        "cap-js/attachments": {
+          "permissions": "read-all"
+        },
+        "cap-js/audi-logging": {
+          "permissions": "read-all"
+        },
+        "cap-js/change-tracking": {
+          "permissions": "read-all"
+        },
+        "cap-js/messaging": {
+          "permissions": "read-all"
+        },
+        "cap-js/change-notifications": {
+          "permissions": "read-all"
+        }
+      }
+    }
+  },
+  "postCreateCommand": "git submodule update --init && npm i && npm i -g @sap/cds-dk && cd samples/attachments && cf login -a https://api.cf.eu12.hana.ondemand.com -o cap-enablement-team -s samples && cds bind @cap-js/attachments -2 attachments-sample:attachments-sample-key && cd ../..",
+  "postStartCommand": "cd samples/attachments && cds watch sample --profile hybrid"
+}
