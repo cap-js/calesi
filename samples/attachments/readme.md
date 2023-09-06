@@ -1,6 +1,6 @@
 # attachments-sample
 
-Sample app based on incident management (`@capire/incidents`) for developing `@cap-js/attachments`
+Sample app based on incident management (`@capire/incidents`) for developing `@cap-js/attachments`.
 
 ## About
 
@@ -48,4 +48,5 @@ to connect to our environment with the prepared object store for the demo.
     ```
 
 5. Navigate to http://localhost:4004/incidents to see the images displayed in the **Avatar** column:
-   <img width="1141" alt="readme_table" src="https://github.com/cap-js/calesi/assets/8320933/005b8f62-bda3-4bb2-99d0-908804ba55be">
+
+   ![Incidents with Attachments](./assets/readme_table.png)
