@@ -47,4 +47,5 @@ to connect to our environment with the prepared object store for the demo.
     bound @cap-js/attachments to Cloud Foundry managed service attachments-sample:attachments-sample-key
     ```
 
-5. Navigate to http://localhost:4004/incidents to see the images displayed in the **Avatar** column.
+5. Navigate to http://localhost:4004/incidents to see the images displayed in the **Avatar** column:
+   <img width="1141" alt="readme_table" src="https://github.com/cap-js/calesi/assets/8320933/005b8f62-bda3-4bb2-99d0-908804ba55be">
