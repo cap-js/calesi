@@ -1,0 +1,8 @@
+
+### Reading sensitive data (credidCardNo)
+GET http://localhost:4004/odata/v4/processors/Customers?$select=name,creditCardNo
+Authorization: Basic alice:wonderland
+
+### Recommendation: Avoid reading sensitive data
+GET http://localhost:4004/odata/v4/processors/Customers?$select=name
+Authorization: Basic alice:wonderland
