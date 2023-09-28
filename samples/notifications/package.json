@@ -1,0 +1,23 @@
+{
+  "name": "@cap-js/alert-notification-sample",
+  "version": "0.0.1",
+  "description": "Sample app for developing cap-js/alert-notification",
+  "repository": "cap-js/alert-notification-sample",
+  "private": true,
+  "dependencies": {
+    "@capire/incidents": "git+https://<GITHUB_TOOLS_PAT>:x-oauth-basic@github.tools.sap/cap/incidents-mgmt",
+    "@cap-js/alert-notification": "git+https://<GITHUB_PAT>:x-oauth-basic@github.com/cap-js/alert-notification#MVP",
+    "@sap/cds": "*",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "*"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+    }
+  }
+}
