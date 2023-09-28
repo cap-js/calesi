@@ -2,8 +2,6 @@
 
 Sample app based on incident management (`@cap-js/incidents-app`) for developing `@cap-js/alert-notification`
 
-# local, production, cds-dk branch
-
 ## About
 
 The `@cap-js/alert-notification` plugin allows you to send notifications to applications deployed on SAP BTP Platform using [SAP Alert Notification Service](https://help.sap.com/docs/alert-notification?locale=en-US).
