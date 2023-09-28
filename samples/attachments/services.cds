@@ -9,7 +9,7 @@ extend incidents.Customers with {
 // Same as in Incidents app, but with extra (image) column
 // for customer avatars
 // See: https://sapui5.hana.ondemand.com/sdk/#/topic/492bc791a7bd41cd9932fdf5d3aa2656.html
-annotate ProcessorsService.Incidents with @(
+annotate ProcessorService.Incidents with @(
     UI.LineItem : [
         ...up to { Value : title },
         // This adds an 'avatar' image column before customer
