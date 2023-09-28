@@ -1,5 +1,7 @@
 const cds = require('@sap/cds')
 
+// TODO: This will no longer be required once we couple
+// the expand the attachments type and decouple the /media route
 cds.on('served', async () => {
     // Upload avatar images into store
     //const { ObjectStoreService } = cds.services
@@ -32,8 +34,8 @@ function registerHandler(readHandler) {
             Object.values(s.entities).forEach(e => {
                 const elements = e.elements;
                 Object.entries(elements).forEach(([k, v]) => {
-                    if (v['@Core.IsURL'] && !s.kind) {
-                        console.log(`> Registering on READ handler @${e.name}.${k}`)
+                    if (v['@title'] === "Attachments:Image") {
+                        console.log(`> Registering on READ handler on ${e.name}.${k}`)
                         s.prepend(() => s.on('READ', readHandler))
                     }
                 })
@@ -43,10 +45,10 @@ function registerHandler(readHandler) {
 
 function getEntityRef() {
     let ref = []
-    Object.values(cds.entities).filter(e => e.compositions).forEach(c => {
+    Object.values(cds.entities).forEach(c => {
         const elements = c.elements;
         Object.entries(elements).forEach(([k, v]) => {
-            if (v['@Core.IsURL'] && !c.projection) {
+            if (v['@title'] === "Attachments:Image" && !v.parent.projection) {
                 ref.push(`${c.name}`)
             }
         })
