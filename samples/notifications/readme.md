@@ -13,11 +13,11 @@ We demonstrate its use by **extending** the reference app and sending a notifica
 
 ### Local Testing
 
-1. Checkout `add-notifications` branch of `cds-dk` by: `git checkout add-notifications`
+1. Clone [add-notifications](https://github.tools.sap/cap/cds-dk/tree/add-notifications) branch of [cds-dk](https://github.tools.sap/cap/cds-dk) by: `git clone -b add-notifications https://github.tools.sap/cap/cds-dk.git`
 
-2. Clone the [Calesi](https://github.com/cap-js/calesi) repository.
+2. Change directory to the cloned repository and execute the following command to link the local copy of `cds-dk`: `npm link`.
 
-3. Pull submodule `incidents-app` by `git submodule update --init --recursive`.
+3. Clone the [Calesi](https://github.com/cap-js/calesi) repository: `git clone --recursive https://github.com/cap-js/calesi`
 
 4. Update dependencies of `samples/notifications` project.
 
