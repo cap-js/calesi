@@ -1,0 +1,10 @@
+{
+    "authorization": {
+      "enabled":true,
+      "product_label": "inicident-ams-<id>"
+    },
+    "oauth2-configuration": {
+
+    },
+    "display-name": "incident-ias-<id>"
+  }

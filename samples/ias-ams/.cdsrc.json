@@ -1,0 +1,30 @@
+{
+    "[development]": {
+      "requires": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "incident.support@tester.sap.com": {
+              "password": "initial",
+              "tenant" : "test",
+              "policies" : [
+                "cap.support (Not restricted)"
+            ]
+            },
+            "alice": {
+            },
+            "bob": {
+              
+            }
+          },
+          "ams" : {
+              "autoCompile" : true,
+              "cache" : {
+                  "TTL" : 0
+              }
+          }
+        }
+      }
+    }
+  }
+  
