@@ -1,23 +1,10 @@
 const cds = require("@sap/cds");
-let status = {
-  N: "New",
-  A: "Assigned",
-  I: "In Process",
-  H: "On Hold",
-  R: "Resolved",
-  C: "Closed",
-};
 
-let urgency = {
-  H: "high",
-  M: "medium",
-  L: "low",
-};
+let recipients = ["abc@abc.com"]
 
 let alert;
 
 cds.once("served", (services) => {
-  const recipients = ["abc@abc.com"];
 
   let publishNewIncidentAlert = async (data) => {
     alert = alert || await cds.connect.to('notifications');
@@ -32,63 +19,45 @@ cds.once("served", (services) => {
         /*
           This will send a notification of default notification type with just title. This notification type is created by cap-js/alert-notification plugin.
         */
-        alert.notify(recipients, "HIGH", "Incident Created");
+        alert.notify(recipients, "HIGH", `New incident created by ${customerDetails}`);
 
-        /*
-          This will send a notification of default notification type with both title and description.
-        */
-        // alert.notify(recipients, "HIGH", "Incident Created", `New Incident Created by: ${customerDetails}`);
+        setTimeout(async () => {
+          /*
+            This will send a notification of default notification type with both title and description.
+          */
+          alert.notify(recipients, "HIGH", "Incident Assigned", `Incident ${entry.title} assigned to Jarvis.`);
 
+          /*
+            To create a notification of your own notification type, just pass the complete notification object to alert.notify() function.
+          */
+          const notificaiton = {
+            NotificationTypeKey: 'IncidentResolved',
+            NotificationTypeVersion: '1',
+            Priority: 'NEUTRAL',
+            Properties: [
+              {
+                Key: 'name',
+                IsSensitive: false,
+                Language: 'en',
+                Value: entry.title,
+                Type: 'String'
+              },
+              {
+                Key: 'customer',
+                IsSensitive: false,
+                Language: 'en',
+                Value: customerDetails,
+                Type: 'String'
+              }
+            ],
+            Recipients: recipients.map((recipient) => ({ RecipientId: recipient }))
+          }
 
-        /*
-          To create a notification of your own notification type, just pass the complete notification object to alert.notify() function.
-        */
-
-        const notificaiton = {
-          NotificationTypeKey: 'NewIncidentReported',
-          NotificationTypeVersion: '1',
-          Priority: 'NEUTRAL',
-          Properties: [
-            {
-              Key: 'name',
-              IsSensitive: false,
-              Language: 'en',
-              Value: entry.title,
-              Type: 'String'
-            },
-            {
-              Key: 'customer_name',
-              IsSensitive: false,
-              Language: 'en',
-              Value: customerDetails,
-              Type: 'String'
-            },
-            {
-              Key: 'count_total',
-              IsSensitive: false,
-              Language: 'en',
-              Value: "1",
-              Type: 'String'
-            },
-            {
-              Key: 'status',
-              IsSensitive: false,
-              Language: 'en',
-              Value: status[entry.status_code],
-              Type: 'String'
-            },
-            {
-              Key: 'urgency',
-              IsSensitive: false,
-              Language: 'en',
-              Value: urgency[entry.urgency_code],
-              Type: 'String'
-            }
-          ],
-          Recipients: recipients.map((recipient) => ({ RecipientId: recipient }))
-        }
-
-        // alert.notify(notificaiton);
+          await UPDATE `sap.capire.incidents.Incidents`.set `status.code = 'C'`.where `ID=${entry.ID}`;
+          setTimeout(() => {
+            alert.notify(notificaiton);
+          }, 1000 * 15);
+        }, 1000 * 5);
       }
     }
   };

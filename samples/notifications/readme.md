@@ -43,23 +43,23 @@ We demonstrate its use by **extending** the reference app and sending a notifica
     ```json
     [
       {
-        "NotificationTypeKey": "NewIncidentReported",
+        "NotificationTypeKey": "IncidentResolved",
         "NotificationTypeVersion": "1",
         "Templates": [
           {
             "Language": "en",
-            "TemplatePublic": "New Incident '{{name}}'",
-            "TemplateSensitive": "New Incident '{{name}}' from '{{customer_name}}'",
-            "TemplateGrouped": "New Incident {{count_total}}",
+            "TemplatePublic": "Incident Resolved",
+            "TemplateSensitive": "Incident '{{name}}' Resolved",
+            "TemplateGrouped": "Incident Status Update",
             "TemplateLanguage": "mustache",
-            "Subtitle": "Status: {{status}} | Urgency: {{urgency}}"
+            "Subtitle": "Incident '{{name}}' from '{{customer}}' resolved by Jarvis."
           }
         ]
       }
     ]
     ```
 
-9. Open server.js and update `recipients` array on Line #20 with your email.
+9. Open server.js and update `recipients` array on Line #3 with your email.
 
 10. In `server.js` we are sending notifications using three different ways:
 
