@@ -1,11 +1,15 @@
-using from '@capire/incidents';
+using { ProcessorService as my } from '@capire/incidents';
 
-annotate ProcessorService.Incidents with @changelog.keys: [customer.name, createdAt] {
+annotate my.Incidents with @changelog: {
+  keys: [ customer.name, createdAt ]
+ } {
   customer @changelog: [ customer.name ];
   title  @changelog;
   status @changelog;
 }
 
-annotate ProcessorService.Conversations with @changelog.keys: [author, timestamp] {
+annotate my.Conversations with @changelog: {
+  keys: [ author, timestamp ]
+ } {
   message  @changelog;
 }
