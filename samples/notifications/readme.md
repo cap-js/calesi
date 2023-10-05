@@ -10,8 +10,7 @@ The `@cap-js/alert-notification` plugin allows you to send notifications to appl
 
 We demonstrate its use by **extending** the reference app and sending a notification when an incident is created using `@cap-js/alert-notification` plugin.
 
-
-### Local Testing
+### Prerequisites for Beta Testing
 
 1. Clone [add-notifications](https://github.tools.sap/cap/cds-dk/tree/add-notifications) branch of [cds-dk](https://github.tools.sap/cap/cds-dk) by: `git clone -b add-notifications https://github.tools.sap/cap/cds-dk.git`
 
@@ -32,13 +31,15 @@ We demonstrate its use by **extending** the reference app and sending a notifica
       }
     ```
 
-5. Execute the following command: `npm i --prefix samples/notifications`
+### Local Testing
 
-6. Change directory to `samples/notifications` folder.
+1. Execute the following command: `npm i --prefix samples/notifications`
 
-7. Execute the following command to add `notifications` configuration: `cds add notifications`
+2. Change directory to `samples/notifications` folder.
 
-8. The above command created a file `notificationtypes.json` in the root directory of the project. This file will contain the notification types which we want to use in our application. In our demo we will create a notification whenever a new incident is created. Paste the following code in the `notificationtypes.json` file to add the Notification Type.
+3. Execute the following command to add `notifications` configuration: `cds add notifications`
+
+4. The above command created a file `notificationtypes.json` in the root directory of the project. This file will contain the notification types which we want to use in our application. In our demo we will create a notification whenever a new incident is created. Paste the following code in the `notificationtypes.json` file to add the Notification Type.
 
     ```json
     [
@@ -59,15 +60,17 @@ We demonstrate its use by **extending** the reference app and sending a notifica
     ]
     ```
 
-9. Open server.js and update `recipients` array on Line #3 with your email.
+5. Open server.js and update `recipients` array on Line #3 with your email.
 
-10. In `server.js` we are sending notifications using three different ways:
+6. In `server.js` we are sending notifications using three different ways:
 
     - alert.notify(recipients, priority, title) - This will send a notification of default notification type with title only. The default notification type is created by the cap-js/alert-notification plugin.
     - alert.notify(recipients, priority, title, description) - This will send a notification of default notification type with both title and description.
     - alert.notify(notification) - To create a notification of your own notification type, just pass the complete notification object to this function.
 
-11. To test in local:
+In our demo, we are using the first method to send a notification when an incident is created. We use the second method to send a notification to inform that the incident is assigned to a processor. The third method is used to send a notification when the incident is closed by the processor.
+
+7. To test in local:
 
     - Start in local: `cds watch`
     - Go to `http://localhost:4004/incidents/`
