@@ -1,13 +1,6 @@
 using { sap.capire.incidents as my } from '../db/schema';
 using { API_BUSINESS_PARTNER as S4 } from './external/API_BUSINESS_PARTNER';
-
-service ProcessorService {
-
-  entity Incidents as projection on my.Incidents;
-
-  @readonly
-  entity Customers as projection on my.Customers;
-}
+using from './processor-service';
 
 extend service ProcessorService {
   entity BusinessPartner as projection on S4.A_BusinessPartner {
@@ -33,11 +26,3 @@ extend service ProcessorService {
       PhoneNumber as phone
   }
 }
-
-extend projection ProcessorService.Customers with {
-  firstName || ' ' || lastName as name: String
-}
-
-annotate ProcessorService.Incidents with @odata.draft.enabled;
-
-annotate ProcessorService with @(requires: ['support']);
