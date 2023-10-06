@@ -1,5 +1,5 @@
 {
-    "name": "incidents-mgmt",
+    "name": "@capire/remote-service",
     "version": "1.0.0",
     "dependencies": {
         "@sap-cloud-sdk/connectivity": "^3.6.0",
