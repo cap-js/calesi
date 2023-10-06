@@ -7,7 +7,6 @@
     "@cap-js/notifications": "*",
     "@capire/change-tracking": "*",
     "@capire/audit-logging": "*",
-    "@capire/remote-service": "*",
     "@capire/incidents": "*"
   },
   "devDependencies": {
