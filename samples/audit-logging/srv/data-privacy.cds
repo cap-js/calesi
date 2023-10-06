@@ -1,4 +1,4 @@
-using {sap.capire.incidents as my} from './customers-service';
+using { sap.capire.incidents as my } from './customers-service';
 using { cuid, managed } from '@sap/cds/common';
 
 annotate my.Customers with @PersonalData: {
