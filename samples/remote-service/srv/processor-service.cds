@@ -7,6 +7,9 @@ service ProcessorService {
 
   @readonly
   entity Customers as projection on my.Customers;
+}
+
+extend service ProcessorService {
   entity BusinessPartner as projection on S4.A_BusinessPartner {
     key BusinessPartner as ID,
     FirstName as firstName,
@@ -29,7 +32,6 @@ service ProcessorService {
       key AddressID as addressId,
       PhoneNumber as phone
   }
-
 }
 
 extend projection ProcessorService.Customers with {
