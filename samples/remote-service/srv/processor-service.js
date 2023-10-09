@@ -21,17 +21,17 @@ class ProcessorService extends cds.ApplicationService {
 
       // Expands are required as the runtime does not support path expressions for remote services
       const customer = await this.S4bupa.run(SELECT.one(BusinessPartner, bp => {
-              bp('addresses'),
-                bp.addresses(address => {
-                  address('email', 'phoneNumber'),
-                    address.email(emails => {
-                      emails('email')
-                    }),
-                    address.phoneNumber(phoneNumber => {
-                      phoneNumber('phone')
-                    })
-                })
-            }).where({ ID: newCustomerId }));
+        bp('addresses'),
+          bp.addresses(address => {
+            address('email', 'phoneNumber'),
+              address.email(emails => {
+                emails('email')
+              }),
+              address.phoneNumber(phoneNumber => {
+                phoneNumber('phone')
+              })
+          })
+      }).where({ ID: newCustomerId }));
                                                                                     
       if(customer) {
         customer.email = customer.addresses[0]?.email[0]?.email;
