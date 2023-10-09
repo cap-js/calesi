@@ -49,7 +49,7 @@ class ProcessorService extends cds.ApplicationService {
   
     const { BusinessPartner } = this.entities;
   
-    const result = await this.S4bupa.run(SELECT.from(BusinessPartner, bp => {
+    const result = (await this.S4bupa.run(SELECT.from(BusinessPartner, bp => {
       bp('*'),
         bp.addresses(address => {
           address('*'),
@@ -57,9 +57,7 @@ class ProcessorService extends cds.ApplicationService {
               emails('*');
             });
         })
-    })
-    .limit(top, skip))
-    .map((bp) => ({
+    }).limit(top, skip))).map((bp) => ({
       ID: bp.ID,
       name: bp.name,
       email: bp.addresses[0]?.email[0]?.email
