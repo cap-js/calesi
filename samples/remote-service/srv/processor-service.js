@@ -63,7 +63,7 @@ class ProcessorService extends cds.ApplicationService {
       email: bp.addresses[0]?.email[0]?.email
     }));
   
-    // This looks weird - assigning properties to an array? Why?
+    // Explicitly set $count so the values show up in the value help in the UI″″
     result.$count = 1000;
     console.log("after result", result);
     return result;
