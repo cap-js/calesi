@@ -18,15 +18,28 @@ class ProcessorService extends cds.ApplicationService {
     const { BusinessPartner } = this.entities;
     if (newCustomerId && (newCustomerId !== "") && ((req.event == "CREATE") || (req.event == "UPDATE"))) {
       console.log('>> CREATE or UPDATE customer!');
-      const customer = await this.S4bupa.run(SELECT.one`from ${BusinessPartner} as bp {
-                                                                                        *,
-                                                                                        bp.addresses.email.email as email,
-                                                                                        bp.addresses.phoneNumber.phone as phone
-                                                                                      }
-                                                                                      excluding { adresses, name }`.where({ ID: newCustomerId }));
+
+      // Expands are required as the runtime does not support path expressions for remote services
+      const customer = await this.S4bupa.run(SELECT.one(BusinessPartner, bp => {
+              bp('addresses'),
+                bp.addresses(address => {
+                  address('email', 'phoneNumber'),
+                    address.email(emails => {
+                      emails('email')
+                    }),
+                    address.phoneNumber(phoneNumber => {
+                      phoneNumber('phone')
+                    })
+                })
+            }).where({ ID: newCustomerId }));
                                                                                     
-      if(customer)
+      if(customer) {
+        customer.email = customer.addresses[0]?.email[0]?.email;
+        customer.phone = customer.addresses[0]?.phoneNumber[0]?.phone;
+        delete customer.addresses;
+        delete customer.name;
         await UPSERT.into(Customers).entries(customer);
+      }
     }
     return result;
   }
@@ -38,9 +51,24 @@ class ProcessorService extends cds.ApplicationService {
     const skip = parseInt(req._queryOptions?.$skip) || 0;
   
     const { BusinessPartner } = this.entities;
+
+    // Expands are required as the runtime does not support path expressions for remote services
+    let result = await this.S4bupa.run(SELECT.from(BusinessPartner, bp => {
+      bp('*'),
+        bp.addresses(address => {
+          address('email'),
+            address.email(emails => {
+              emails('email');
+            });
+        })
+    }).limit(top, skip));
   
-    const result = await this.S4bupa.run(SELECT`from ${BusinessPartner} as bp { bp.ID, bp.name, bp.addresses.email.email as email }`.limit(top, skip));
-  
+    result = result.map((bp) => ({
+      ID: bp.ID,
+      name: bp.name,
+      email: bp.addresses[0]?.email[0]?.email
+    }));
+
     // Explicitly set $count so the values show up in the value help in the UI
     result.$count = 1000;
     console.log("after result", result);
