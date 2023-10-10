@@ -13,32 +13,34 @@ class ProcessorService extends cds.ApplicationService {
 
   async onCustomerCache(req, next) {
     const { Customers } = this.entities;
-    const newCustomerId = req.data.customer_ID
+    const newCustomerId = req.data.customer_ID;
     const result = await next();
     const { BusinessPartner } = this.entities;
     if (newCustomerId && (newCustomerId !== "") && ((req.event == "CREATE") || (req.event == "UPDATE"))) {
-      console.log('>> CREATE or UPDATE customer!')
-      var customer = await this.S4bupa.run(SELECT.one(BusinessPartner, bp => {
+      console.log('>> CREATE or UPDATE customer!');
+
+      // Expands are required as the runtime does not support path expressions for remote services
+      const customer = await this.S4bupa.run(SELECT.one(BusinessPartner, bp => {
         bp('*'),
           bp.addresses(address => {
-            address('*'),
+            address('email', 'phoneNumber'),
               address.email(emails => {
-                emails('*')
+                emails('email')
               }),
               address.phoneNumber(phoneNumber => {
-                phoneNumber('*')
+                phoneNumber('phone')
               })
           })
       }).where({ ID: newCustomerId }));
-      customer.email = customer.addresses[0]?.email[0]?.email
-      customer.phone = customer.addresses[0]?.phoneNumber[0]?.phone
-    };
-    if (customer) {
-      delete customer.addresses;
-      delete customer.name;
-      await UPSERT.into(Customers).entries(customer)
+                                                                                    
+      if(customer) {
+        customer.email = customer.addresses[0]?.email[0]?.email;
+        customer.phone = customer.addresses[0]?.phoneNumber[0]?.phone;
+        delete customer.addresses;
+        delete customer.name;
+        await UPSERT.into(Customers).entries(customer);
+      }
     }
-
     return result;
   }
 
@@ -49,13 +51,14 @@ class ProcessorService extends cds.ApplicationService {
     const skip = parseInt(req._queryOptions?.$skip) || 0;
   
     const { BusinessPartner } = this.entities;
-  
-    var result = await this.S4bupa.run(SELECT.from(BusinessPartner, bp => {
+
+    // Expands are required as the runtime does not support path expressions for remote services
+    let result = await this.S4bupa.run(SELECT.from(BusinessPartner, bp => {
       bp('*'),
         bp.addresses(address => {
-          address('*'),
+          address('email'),
             address.email(emails => {
-              emails('*');
+              emails('email');
             });
         })
     }).limit(top, skip));
@@ -65,6 +68,8 @@ class ProcessorService extends cds.ApplicationService {
       name: bp.name,
       email: bp.addresses[0]?.email[0]?.email
     }));
+
+    // Explicitly set $count so the values show up in the value help in the UI
     result.$count = 1000;
     console.log("after result", result);
     return result;
@@ -84,9 +89,9 @@ class ProcessorService extends cds.ApplicationService {
 
   /** Custom Validation */
   async onUpdate (req) {
-    const { status_code } = await SELECT.one(req.subject, i => i.status_code).where({ID: req.data.ID})
+    const { status_code } = await SELECT.one(req.subject, i => i.status_code).where({ID: req.data.ID});
     if (status_code === 'C')
-      return req.reject(`Can't modify a closed incident`)
+      return req.reject(`Can't modify a closed incident`);
   }
 }
-module.exports = ProcessorService
+module.exports = ProcessorService;

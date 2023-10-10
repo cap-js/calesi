@@ -1,3 +1,4 @@
+// Copied from vanilla incidents management - only change is Customers.ID
 using { cuid, managed, sap.common.CodeList } from '@sap/cds/common';
 
 namespace sap.capire.incidents;
@@ -7,6 +8,7 @@ namespace sap.capire.incidents;
  * Customers can create support Incidents.
  */
 entity Customers : managed {
+  // This was changed from UUID to String, as SAP S/4HANA Cloud Business Partner API uses a String as ID
   key ID        : String;
   firstName     : String;
   lastName      : String;
