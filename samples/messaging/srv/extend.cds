@@ -1,3 +1,4 @@
+//Expose Remote Services with associations
 using { sap.capire.incidents as my } from '../db/schema';
 using { API_BUSINESS_PARTNER as S4 } from './external/API_BUSINESS_PARTNER';
 using from './processor-service';

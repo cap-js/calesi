@@ -1,3 +1,4 @@
+//This enables mocking events for local runs 
 module.exports = function () {
     const { A_BusinessPartner } = this.entities;
    

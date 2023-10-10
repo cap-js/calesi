@@ -1,6 +1,8 @@
 using ProcessorService as service from '../../srv/processor-service';
 using from './annotations.cds';
 annotate service.Incidents with @(
+    /*adding email to the object page enables users to view the
+    changes recieved via Messaging/Eventing*/
     UI.FieldGroup #GeneratedGroup1 : {
         Data : [...,
         {
