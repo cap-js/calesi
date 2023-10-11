@@ -12,6 +12,8 @@ class ProcessorService extends cds.ApplicationService {
     this.on('READ', 'Customers', (req) => this.onCustomerRead(req));
     this.on(['CREATE','UPDATE'], 'Incidents', (req, next) => this.onCustomerCache(req, next));
     this.S4bupa = await cds.connect.to('API_BUSINESS_PARTNER');
+
+    // Added Handlers for Eventing on top of remote service sample
     this.messaging = await cds.connect.to('messaging');
     this.messaging.on('sap.s4.beh.businesspartner.v1.BusinessPartner.Changed.v1', async ({ event, data }) => await this.onBusinessPartnerChanged(event, data))
     return super.init();
@@ -21,7 +23,7 @@ class ProcessorService extends cds.ApplicationService {
     const {Customers, BusinessPartnerAddress, EmailAddress} = this.entities;
     console.log('<< received', event, data)
     const Id = data.BusinessPartner;
-    var customer =  await this.S4bupa.run(SELECT.one(BusinessPartnerAddress, address => {
+    const customer =  await this.S4bupa.run(SELECT.one(BusinessPartnerAddress, address => {
       address('*'),
       address.email(emails => {
         emails('*')})
