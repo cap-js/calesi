@@ -17,7 +17,6 @@ class ProcessorService extends cds.ApplicationService {
     return super.init();
   }
 
-  //
   async onBusinessPartnerChanged(event, data){
     const {Customers, BusinessPartnerAddress, EmailAddress} = this.entities;
     console.log('<< received', event, data)
