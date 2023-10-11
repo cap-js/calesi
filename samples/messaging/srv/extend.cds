@@ -1,4 +1,7 @@
-//Expose Remote Services with associations
+/**
+* Expose Remote Services with associations. Eventing/Messaging sample is an extension on top
+* of Remote Service integration. This file is same as in Remote Service Sample
+*/
 using { sap.capire.incidents as my } from '../db/schema';
 using { API_BUSINESS_PARTNER as S4 } from './external/API_BUSINESS_PARTNER';
 using from './processor-service';

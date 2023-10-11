@@ -1,4 +1,8 @@
 /* checksum : 1a75d5c6df2b337c5ae6bfe60fbcc74b */
+/**  
+* Importing the API specification of an SAP S/4HANA service. Eventing/Messaging sample is an extension 
+* of Remote Service Sample. This file is same as in  Remote Service Sample
+*/
 @cds.external : true
 @m.IsDefaultEntityContainer : 'true'
 @sap.message.scope.supported : 'true'

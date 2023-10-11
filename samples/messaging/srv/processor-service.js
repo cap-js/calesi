@@ -1,3 +1,7 @@
+/**  
+* Same as Remote Service Sample. Added additional Handlers for recieving and 
+* handling events/messages 
+*/
 const cds = require('@sap/cds')
 
 class ProcessorService extends cds.ApplicationService {
@@ -13,9 +17,9 @@ class ProcessorService extends cds.ApplicationService {
     return super.init();
   }
 
+  //
   async onBusinessPartnerChanged(event, data){
     const {Customers, BusinessPartnerAddress, EmailAddress} = this.entities;
-    //If Business Partner exists in Cache, then update
     console.log('<< received', event, data)
     const Id = data.BusinessPartner;
     var customer =  await this.S4bupa.run(SELECT.one(BusinessPartnerAddress, address => {
