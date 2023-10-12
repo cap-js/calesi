@@ -5,19 +5,25 @@
   "repository": "cap-js/alert-notification-sample",
   "private": true,
   "dependencies": {
-    "@capire/incidents": "git+https://<GITHUB_TOOLS_PAT>:x-oauth-basic@github.tools.sap/cap/incidents-mgmt",
-    "@cap-js/alert-notification": "git+https://<GITHUB_PAT>:x-oauth-basic@github.com/cap-js/alert-notification#MVP",
+    "@cap-js/alert-notification": "git+https://simeonPetkov96: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@github.com/cap-js/alert-notification#for_test",
+    "@capire/incidents": "git+https://i339886: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@github.tools.sap/cap/incidents-mgmt",
     "@sap/cds": "*",
     "express": "^4"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "*"
+    "@cap-js/sqlite": "*",
+    "prettier": "3.0.3"
   },
   "scripts": {
     "start": "cds-serve"
   },
   "cds": {
     "requires": {
+      "notifications": {
+        "types": "notificationtypes.json",
+        "destination": "SAP_Notifications",
+        "prefix": "alert-notification-sample"
+      }
     }
   }
 }

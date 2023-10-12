@@ -12,5 +12,32 @@
         "Subtitle": "Incident '{{name}}' from '{{customer}}' resolved by Jarvis."
       }
     ]
+  },
+  {
+    "NotificationTypeKey": "IncidentResolved",
+    "NotificationTypeVersion": "2",
+    "Templates": [
+      {
+        "Language": "en",
+        "TemplatePublic": "Incident Resolved 2",
+        "TemplateSensitive": "Incident '{{name}}' Resolved",
+        "TemplateGrouped": "Incident Status Update",
+        "TemplateLanguage": "mustache",
+        "Subtitle": "Incident '{{name}}' from '{{customer}}' resolved by Jarvis."
+      }
+    ]
+  },
+  {
+    "NotificationTypeKey": "IncidentResolved3",
+    "Templates": [
+      {
+        "Language": "en",
+        "TemplatePublic": "Incident Resolved 3",
+        "TemplateSensitive": "Incident '{{name}}' Resolved",
+        "TemplateGrouped": "Incident Status Update",
+        "TemplateLanguage": "mustache",
+        "Subtitle": "Incident '{{name}}' from '{{customer}}' resolved by Jarvis."
+      }
+    ]
   }
 ]
