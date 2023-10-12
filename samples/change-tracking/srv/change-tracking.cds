@@ -6,8 +6,6 @@ annotate my.Incidents with @changelog: [ customer.name, createdAt ] {
   status @changelog;
 }
 
-annotate my.Conversations with @changelog: {
-  keys: [ author, timestamp ]
- } {
+annotate my.Conversations with @changelog: [ author, timestamp ] {
   message  @changelog;
 }
