@@ -29,13 +29,14 @@ When a new incident is created by the processor, he/she had to assign the incide
 
 6. [Run a developer test with Mock Data](https://github.com/SAP-samples/btp-developer-guide-cap/blob/main/documentation/remote-service/develop/test-with-mock.md#run-the-incident-management-application)
 
-### Deploy and Run the application
+### Deploy and Run the application in SAP BTP
 
 * [Make sure prerequisites are fulfilled and all required systems are in place](https://github.com/SAP-samples/btp-developer-guide-cap/blob/main/documentation/remote-service/mission-prerequisites/README.md)
+* [Configure the connectivity between SAP S/4HANA Cloud and SAP BTP](https://github.com/SAP-samples/btp-developer-guide-cap/blob/main/documentation/remote-service/s4hana-cloud-to-btp-connectivity/README.md)
 * [Prepare the app for Production](https://github.com/SAP-samples/btp-developer-guide-cap/blob/main/documentation/remote-service/deploy/prep-for-prod/prep-for-prod.md)
 * [Configure Mock Server - optional](https://github.com/SAP-samples/btp-developer-guide-cap/blob/main/documentation/remote-service/install-mock-server/README.md)
-* [Option 1 - Deploy to CF](https://github.com/SAP-samples/btp-developer-guide-cap/blob/main/documentation/remote-service/deploy/cf/README.md)
-* [Option 2 - Deploy to Kyma](https://github.com/SAP-samples/btp-developer-guide-cap/blob/main/documentation/remote-service/deploy/kyma/README.md)
+* [Option 1 - Deploy to SAP BTP Cloud Foundry](https://github.com/SAP-samples/btp-developer-guide-cap/blob/main/documentation/remote-service/deploy/cf/README.md)
+* [Option 2 - Deploy to SAP BTP Kyma Runtime](https://github.com/SAP-samples/btp-developer-guide-cap/blob/main/documentation/remote-service/deploy/kyma/README.md)
 * [Test the end to end flow](https://github.com/SAP-samples/btp-developer-guide-cap/blob/main/documentation/remote-service/test-the-application/test-the-app.md)
 
    
