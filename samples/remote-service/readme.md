@@ -15,18 +15,19 @@ When a new incident is created by the processor, he/she had to assign the incide
     ```sh
     git clone https://github.com/cap-js/calesi.git --recursive
     ```
+2. Navigate to the folder samples/remote-service
 
-2. Run the below command to copy files from remote service sample to the incident management application.
+3. Run the below command to copy files from remote service sample to the incident management application.
 
     ```sh
     cp -r ./db ./srv ./tests package.json ../../incidents-app
     ```
 
-3. Navigate to incidents-app and open package.json file.
+4. Navigate to incidents-app and open package.json file.
 
-4. Change the name in package.json file to `incident-management`
+5. Change the name in package.json file to `incident-management`
 
-5. [Run a developer test with Mock Data](https://github.com/SAP-samples/btp-developer-guide-cap/blob/main/documentation/remote-service/develop/test-with-mock.md)
+6. [Run a developer test with Mock Data](https://github.com/SAP-samples/btp-developer-guide-cap/blob/main/documentation/remote-service/develop/test-with-mock.md#run-the-incident-management-application)
 
 ### Deploy and Run the application
 
