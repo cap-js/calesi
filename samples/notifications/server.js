@@ -19,13 +19,13 @@ cds.once("served", (services) => {
         /*
           This will send a notification of default notification type with just title. This notification type is created by cap-js/alert-notification plugin.
         */
-        alert.notify(recipients, "HIGH", `New incident created by ${customerDetails}`);
+        alert.notify({ recipients: recipients, priority: "HIGH", title: `New incident created by ${customerDetails}` });
 
         setTimeout(async () => {
           /*
             This will send a notification of default notification type with both title and description.
           */
-          alert.notify(recipients, "HIGH", "Incident Assigned", `Incident ${entry.title} assigned to Jarvis.`);
+          alert.notify({ recipients: recipients, priority: "HIGH", title: "Incident Assigned", description: `Incident ${entry.title} assigned to Jarvis.`});
 
           /*
             To create a notification of your own notification type, just pass the complete notification object to alert.notify() function.
