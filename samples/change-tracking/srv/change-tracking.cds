@@ -1,4 +1,7 @@
-using { ProcessorService as my } from '@capire/incidents';
+using {
+  sap.capire.incidents as my,
+  ProcessorService
+} from './processor-service';
 
 annotate sap.capire.incidents.Incidents @title: 'Incidents';
 annotate sap.capire.incidents.Conversations @title: 'Conversations';
