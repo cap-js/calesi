@@ -1,6 +1,6 @@
 # Remote Service - Sample
 
-Sample app based on [Incident Management](https://github.com/cap-js/incidents-app) for showcasing how to integrate a CAP based application to a remote service.
+Sample app based on [Incident Management](https://github.com/cap-js/incidents-app) for showcasing how to integrate a remote service into a CAP based application.
 
 ## Business Use Case
 
