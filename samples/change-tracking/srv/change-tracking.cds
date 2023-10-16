@@ -3,8 +3,8 @@ using {
   ProcessorService
 } from './processor-service';
 
-annotate sap.capire.incidents.Incidents @title: 'Incidents';
-annotate sap.capire.incidents.Conversations @title: 'Conversations';
+annotate my.Incidents with @title: 'Incidents';
+annotate my.Conversations with @title: 'Conversations';
 
 annotate my.Incidents @changelog: [ customer.name, createdAt ] {
   customer @changelog: [ customer.name ] @title: 'Customer';
