@@ -1,8 +1,12 @@
+### Customers can update/modify thier potentially sensitive informations like creditCardNo 
+PATCH  http://localhost:4004/odata/v4/master-data/Customers HTTP/1.1
+Content-Type: application/json
+Authorization: Basic bob:
 
-### Reading sensitive data (credidCardNo)
-GET http://localhost:4004/odata/v4/processors/Customers?$select=name,creditCardNo
-Authorization: Basic alice:wonderland
+{
+   "creditCardNo": "1234567890123456"
+}
 
-### Recommendation: Avoid reading sensitive data
-GET http://localhost:4004/odata/v4/processors/Customers?$select=name
-Authorization: Basic alice:wonderland
+### Recommendation: Avoid reading sensitive data via explicit selection of what is needed
+GET  http://localhost:4004/odata/v4/master-data/Customers?$select=ID,name,email
+Authorization: Basic incident.support@tester.sap.com:initial
