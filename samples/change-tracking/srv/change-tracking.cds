@@ -1,7 +1,7 @@
 using {
   sap.capire.incidents as my,
   ProcessorService
-} from './processor-service';
+} from '@capire/incidents';
 
 annotate my.Incidents with @title: 'Incidents';
 annotate my.Conversations with @title: 'Conversations';
