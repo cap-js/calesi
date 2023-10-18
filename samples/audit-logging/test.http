@@ -1,5 +1,5 @@
 
-### Reading sensitive data (credidCardNo)
+### Reading sensitive data (creditCardNo)
 GET http://localhost:4004/odata/v4/processor/Customers?$select=name,creditCardNo
 Authorization: Basic alice:wonderland
 
