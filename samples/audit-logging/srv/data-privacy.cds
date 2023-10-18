@@ -1,7 +1,6 @@
-using { sap.capire.incidents as my } from './customers-service';
-using { cuid, managed } from '@sap/cds/common';
+using {sap.capire.incidents as my} from '../db/extensions';
 
-annotate my.Customers with @PersonalData: {
+annotate my.Customers with @PersonalData   : {
   EntitySemantics: 'DataSubject',
   DataSubjectRole: 'Customer'
 } {
@@ -13,17 +12,9 @@ annotate my.Customers with @PersonalData: {
   creditCardNo @PersonalData.IsPotentiallySensitive;
 }
 
-annotate my.Addresses with @PersonalData: {
-  EntitySemantics: 'DataSubjectDetails'
-} {
+annotate my.Addresses with @PersonalData    : {EntitySemantics: 'DataSubjectDetails'} {
   customer      @PersonalData.FieldSemantics: 'DataSubjectID';
   city          @PersonalData.IsPotentiallyPersonal;
   postCode      @PersonalData.IsPotentiallyPersonal;
   streetAddress @PersonalData.IsPotentiallyPersonal;
-}
-
-annotate my.Incidents with @PersonalData: {
-  EntitySemantics: 'Other'
-} {
-  customer @PersonalData.FieldSemantics : 'DataSubjectID';
 }
