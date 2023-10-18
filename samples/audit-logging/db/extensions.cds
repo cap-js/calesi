@@ -1,4 +1,4 @@
-using from '@capire/incidents';
+using from './schema';
 using {
   cuid,
   managed
