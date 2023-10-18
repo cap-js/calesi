@@ -1,5 +1,6 @@
 @host = http://localhost:4004
 
+
 #####
 #
 # ProcessorService
@@ -11,6 +12,7 @@ Authorization: Basic alice:wonderland
 
 ### Recommendation: Avoid reading sensitive data
 GET {{host}}/odata/v4/processor/Customers?$select=name
+
 Authorization: Basic alice:wonderland
 
 #####
