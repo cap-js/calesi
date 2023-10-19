@@ -1,14 +1,14 @@
-# alert-notification-sample
+# notification-sample
 
-Sample app based on incident management (`@cap-js/incidents-app`) for developing `@cap-js/alert-notification`
+Sample app based on incident management (`@cap-js/incidents-app`) for developing `@cap-js/notifications`
 
 ## About
 
-The `@cap-js/alert-notification` plugin allows you to send notifications to applications deployed on SAP BTP Platform using [SAP Alert Notification Service](https://help.sap.com/docs/alert-notification?locale=en-US).
+The `@cap-js/notifications` plugin allows you to send notifications to applications deployed on SAP BTP Platform using [SAP Alert Notification Service](https://help.sap.com/docs/alert-notification?locale=en-US).
 
 ## Demo
 
-We demonstrate its use by **extending** the reference app and sending a notification when an incident is created using `@cap-js/alert-notification` plugin.
+We demonstrate its use by **extending** the reference app and sending a notification when an incident is created using `@cap-js/notifications` plugin.
 
 ### Prerequisites for Beta Testing
 
@@ -23,9 +23,9 @@ We demonstrate its use by **extending** the reference app and sending a notifica
     ```diff
     "dependencies": {
     -    "@capire/incidents": "*",
-    -    "@cap-js/alert-notification": "*",
+    -    "@cap-js/notifications": "*",
     +    "@capire/incidents": "git+https://<GITHUB_TOOLS_PAT>:x-oauth-basic@github.tools.sap/cap/incidents-mgmt",
-    +    "@cap-js/alert-notification": "git+https://<GITHUB_PAT>:x-oauth-basic@github.com/cap-js/alert-notification#MVP",
+    +    "@cap-js/notifications": "git+https://<GITHUB_PAT>:x-oauth-basic@github.com/cap-js/notifications#MVP",
         "@sap/cds": "*",
         "express": "^4"
       }
@@ -39,7 +39,7 @@ We demonstrate its use by **extending** the reference app and sending a notifica
 
 3. Execute the following command to add `notifications` configuration: `cds add notifications`
 
-4. The above command created a file `notificationtypes.json` in the root directory of the project. This file will contain the notification types which we want to use in our application. In our demo we will create a notification whenever a new incident is created. Paste the following code in the `notificationtypes.json` file to add the Notification Type.
+4. The above command creates a file `notificationtypes.json` in the root directory of the project. This file will contain the notification types which we want to use in our application. In our demo we will create a notification whenever a new incident is created. Paste the following code in the `notificationtypes.json` file to add the Notification Type.
 
     ```json
     [
@@ -64,9 +64,27 @@ We demonstrate its use by **extending** the reference app and sending a notifica
 
 6. In `server.js` we are sending notifications using three different ways:
 
-    - alert.notify(recipients, priority, title) - This will send a notification of default notification type with title only. The default notification type is created by the cap-js/alert-notification plugin.
-    - alert.notify(recipients, priority, title, description) - This will send a notification of default notification type with both title and description.
-    - alert.notify(notification) - To create a notification of your own notification type, just pass the complete notification object to this function.
+    - Example to send a notification of `default notification type with title only`. The default notification type is created by the `cap-js/notifications` plugin.
+      ```js
+      alert.notify({
+        recipients: recipients,
+        priority: priority,
+        title: title
+      });
+      ```
+    - Example to send a notification of `default notification type with both title and description`.
+      ```js
+      alert.notify({
+        recipients: recipients,
+        priority: priority,
+        title: title,
+        description: description
+      });
+      ```
+    - Example to create a notification of your custom notification type, just pass the complete notification object to this function.
+      ```js
+      alert.notify(notification);
+      ```
 
 In our demo, we are using the first method to send a notification when an incident is created. We use the second method to send a notification to inform that the incident is assigned to a processor. The third method is used to send a notification when the incident is closed by the processor.
 
