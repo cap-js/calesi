@@ -7,21 +7,21 @@
 
 ### Reading sensitive data (creditCardNo)
 GET {{host}}/odata/v4/processor/Customers?$select=name,creditCardNo
-Authorization: Basic alice:wonderland
+Authorization: Basic incident.support@tester.sap.com:initial
 
 ### Recommendation: Avoid reading sensitive data
 GET {{host}}/odata/v4/processor/Customers?$select=name
-Authorization: Basic alice:wonderland
+Authorization: Basic incident.support@tester.sap.com:initial
 
 #####
 #
-# MasterDataService
+# AdminService
 #
 
 ### Creating a customer with personal data
 # @name create_customer
-POST {{host}}/odata/v4/master-data/Customers
-Authorization: Basic yves:wonderland
+POST {{host}}/odata/v4/admin/Customers
+Authorization: Basic alice:wonderland
 Content-Type: application/json
 
 {
@@ -33,8 +33,8 @@ Content-Type: application/json
 
 ### Updating a customer with personal data details
 @customer = {{create_customer.response.body.ID}}
-PATCH {{host}}/odata/v4/master-data/Customers({{customer}})
-Authorization: Basic yves:wonderland
+PATCH {{host}}/odata/v4/admin/Customers({{customer}})
+Authorization: Basic alice:wonderland
 Content-Type: application/json
 
 {
