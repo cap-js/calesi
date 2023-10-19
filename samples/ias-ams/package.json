@@ -1,28 +1,76 @@
 {
-    "name": "@capire/ams-sample",
-    "version": "0.0.1",
-    "description": "Sample app for developing @cap-js/authorization management service",
-    "dependencies": {
-      "@capire/incidents": "*",
-      "@sap/ams": "*",
-      "@sap/cds": "*",
-      "express": "^4"
-    },
-    "devDependencies": {
-        "@sap/ams-dev": "*",
-      "@cap-js/sqlite": "*"
-    },
-    "scripts": {
-      "start": "cds-serve"
-    },
-    "cds": {
-        "requires": {
-            "[production]": {
-              "auth": {
-                "kind": "ias"
-              }
+  "name": "@capire/ams-sample",
+  "version": "0.0.1",
+  "description": "Sample app for developing @cap-js/authorization management service",
+  "dependencies": {
+    "@sap/cds": ">=7",
+    "express": "^4",
+    "@sap/ams": "*",
+    "@cap-js/audit-logging": "*",
+    "@sap/cds-hana": "^2",
+    "@sap/xssec": "^3",
+    "passport": "^0"
+  },
+  "devDependencies": {
+    "@sap/ux-specification": "^1.108.4",
+    "axios": "^1.4.0",
+    "@sap/ams-dev": "*",
+    "chai": "^4.3.7",
+    "chai-as-promised": "^7.1.1",
+    "chai-subset": "^1.6.0",
+    "jest": "^29.5.0",
+    "@cap-js/sqlite":"^1.0.1"
+  },
+  "scripts": {
+    "watch": "cds watch",
+    "start": "cds-serve",
+    "test": "npx jest --silent"
+  },
+  "private": true,
+  "sapux": [
+    "app/incidents"
+  ],
+  "cds": {
+    "requires": {
+      "[production]": {
+        "db": {
+          "kind": "hana-cloud"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        },
+        "approuter": {
+          "kind": "cloudfoundry"
+        }
+      },
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "incident.support@tester.sap.com": {
+              "password": "initial",
+              "policies" : [
+                "cap.support (Not restricted)"
+            ]
+            },
+            "alice": {
+              "roles": ["support"]
+            },
+            "bob": {
+              "roles": ["support"]
             }
-          }
-    },
-    "private": true
+          },
+        "ams" : {
+            "autoCompile" : true,
+            "cache" : {
+                "TTL" : 0
+            }
+        }
+        }
+      },
+      "db": {
+        "kind": "sql"
+      }
+    }
   }
+}
