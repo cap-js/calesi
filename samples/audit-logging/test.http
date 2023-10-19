@@ -5,11 +5,11 @@
 # ProcessorService
 #
 
-### Reading sensitive data (creditCardNo)
-GET {{host}}/odata/v4/processor/Customers?$select=name,creditCardNo
+### Reading sensitive data (creditCardNo) by default - NOT recommended!
+GET {{host}}/odata/v4/processor/Customers
 Authorization: Basic incident.support@tester.sap.com:initial
 
-### Recommendation: Avoid reading sensitive data
+### Recommendation: Avoid reading sensitive data by explicitly selecting the fields you need
 GET {{host}}/odata/v4/processor/Customers?$select=name
 Authorization: Basic incident.support@tester.sap.com:initial
 
