@@ -8,7 +8,7 @@
     "@sap/ams": "*",
     "@cap-js/audit-logging": "*",
     "@sap/cds-hana": "^2",
-    "@sap/xssec": "^3",
+    "@sap/xssec": "^3.3.5",
     "passport": "^0"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
           "kind": "hana-cloud"
         },
         "auth": {
-          "kind": "xsuaa"
+          "kind": "ias"
         },
         "approuter": {
           "kind": "cloudfoundry"
