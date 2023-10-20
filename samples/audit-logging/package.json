@@ -1,6 +1,6 @@
 {
   "name": "@capire/audit-logging",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Sample app for showcasing @cap-js/audit-logging",
   "dependencies": {
     "@capire/incidents": "*",
