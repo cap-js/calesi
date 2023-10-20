@@ -7,9 +7,6 @@
     "@cap-js/audit-logging": "*",
     "@capire/incidents": "*"
   },
-  "devDependencies": {
-    "@sap/cds-dk": "^7"
-  },
   "scripts": {
     "add_remote_incidents": "cd gen/srv && npm add @capire/incidents@git://github.com/cap-js/incidents-app",
     "deploy": "mbt build -t gen --mtar mta.tar && cf deploy gen/mta.tar",
