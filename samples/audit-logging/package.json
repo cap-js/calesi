@@ -2,6 +2,7 @@
   "name": "@capire/audit-logging",
   "version": "1.0.0",
   "description": "Sample app for showcasing @cap-js/audit-logging",
+  "private": true,
   "dependencies": {
     "@capire/incidents": "*",
     "@cap-js/audit-logging": "*"
@@ -15,6 +16,5 @@
         "model": "@capire/audit-logging"
       }
     }
-  },
-  "private": true
+  }
 }
