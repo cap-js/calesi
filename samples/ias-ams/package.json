@@ -6,7 +6,6 @@
     "@sap/cds": ">=7",
     "express": "^4",
     "@sap/ams": "*",
-    "@cap-js/audit-logging": "*",
     "@sap/cds-hana": "^2",
     "@sap/xssec": "^3.3.5",
     "passport": "^0"
