@@ -23,3 +23,10 @@ Example OData requests for:
 
 - `ProcessorService`: reading sensitive data and, more importantly, how to avoid it
 - `AdminService`: modifying personal data
+
+## Deploy to BTP CF
+
+1. `cf l` to target landscape
+1. `cf cs auditlog premium calesi-audit-logging-auditlog`
+    - `cf cs auditlog oauth2 calesi-audit-logging-auditlog` for SAP accounts
+1. `npm run deploy`
