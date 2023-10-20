@@ -5,7 +5,7 @@
   "dependencies": {
     "@sap/cds": ">=7",
     "express": "^4",
-    "@sap/ams": "*",
+    "@sap/ams": "^1.13.0",
     "@sap/cds-hana": "^2",
     "@sap/xssec": "^3.3.5",
     "passport": "^0"
@@ -13,7 +13,7 @@
   "devDependencies": {
     "@sap/ux-specification": "^1.108.4",
     "axios": "^1.4.0",
-    "@sap/ams-dev": "*",
+    "@sap/ams-dev": "^0.7.0",
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
