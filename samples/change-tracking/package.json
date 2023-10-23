@@ -10,7 +10,7 @@
   },
   "cds": {
     "requires": {
-      "@capire/change-tracking": {
+      "change-tracking extensions": {
         "model": "@capire/change-tracking/srv/change-tracking.cds"
       }
     }
