@@ -12,9 +12,11 @@
     },
     "cds": {
         "requires": {
-            "@cap-js/attachments": {
-                "service-name": "attachments-sample",
-                "service-plan": "s3-standard"
+            "[hybrid]": {
+                "@cap-js/attachments": {
+                    "service-name": "attachments-sample",
+                    "service-plan": "s3-standard"
+                }
             }
         }
     }
