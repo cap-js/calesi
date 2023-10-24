@@ -15,8 +15,9 @@
     "start": "cds-serve"
   },
   "cds": {
+    ">> NOTE <<": "This is only required for running cds w samples/audit-logging in this monorepo setup, not for real projects.",
     "requires": {
-      "@capire/audit-logging": {
+      "audit-logging extensions": {
         "model": "@capire/audit-logging"
       }
     }
