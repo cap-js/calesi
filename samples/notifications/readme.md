@@ -1,6 +1,6 @@
 # notification-sample
 
-Sample app based on incident management [`@capire/incidents`](https://github.com/cap-js/incidents-app) for developing [`@cap-js/notifications`](https://www.npmjs.com/package/@cap-js/notifications)
+Sample app based on incident management [`@capire/incidents`](https://github.com/cap-js/incidents-app) for demoing the usage of notification plugin [`@cap-js/notifications`](https://www.npmjs.com/package/@cap-js/notifications)
 
 ## About
 
