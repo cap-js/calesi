@@ -1,5 +1,5 @@
 {
-    "name": "@cap-js/attachments-sample",
+    "name": "@capire/attachments-sample",
     "version": "1.0.0",
     "dependencies": {
         "@cap-js/attachments": "*",

@@ -8,7 +8,7 @@ The folders in here are:
 
 - **`incidents-app`**
 
-    The incidents base application used for all examples         |
+    The incidents base application used for all examples
 
 - **`samples/...`**
 
@@ -64,17 +64,20 @@ In order to run the incidents app with more than one enhancement...
 - TODO...
 
 
+
 ## Contribute
 
 Follow these steps to add a new Calesi case:
 
 1. Clone this repository as given above
-2. Add a new subfolder in `samples/`, e.g.:
+1. Add a new subfolder in `samples/`, e.g.:
    ```sh
    cds init samples/change-tracking
    ```
-3. If the service plugin is not yet released, clone the repo into a respective subfolder in `plugins/`, e.g.
-   ```sh
-   git clone https://github.com/cap-js/change-tracking plugins/change-tracking
-   ```
-4. Run `npm install` to npm link all dependencies
+1. Add the plugin
+    1. If the service plugin is not yet released, clone the repo into a respective subfolder in `plugins/`, e.g.
+        ```sh
+        git clone https://github.com/cap-js/change-tracking plugins/change-tracking
+        ```
+    1. If/ once the plugin is released, add the root package.json's workspaces config, i.e., `samples/<plugin>`
+1. Run `npm install` to npm link all dependencies

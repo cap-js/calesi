@@ -8,6 +8,8 @@
 .cdsrc-private.json
 .DS_Store
 mta_archives
+.npmrc
+package-lock.json
 
 *.sqlite
 *.db
