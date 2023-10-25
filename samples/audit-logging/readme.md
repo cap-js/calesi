@@ -27,6 +27,5 @@ Example OData requests for:
 ## Deploy to BTP CF
 
 1. `cf l` to target landscape
-1. `cf cs auditlog premium calesi-audit-logging-auditlog`
-    - `cf cs auditlog oauth2 calesi-audit-logging-auditlog` for SAP accounts
+1. If you want to deploy to an SAP account: In mta.yaml, change plan of `calesi-audit-logging-auditlog` from `premium` to `oauth2`
 1. `npm run deploy`

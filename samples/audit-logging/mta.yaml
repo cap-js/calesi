@@ -49,4 +49,7 @@ resources:
       service: hana
       service-plan: hdi-shared
   - name: calesi-audit-logging-auditlog
-    type: org.cloudfoundry.existing-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: auditlog
+      service-plan: premium
