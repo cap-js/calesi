@@ -1,6 +1,6 @@
 # notification-sample
 
-Sample app based on incident management (`@cap-js/incidents-app`) for developing `@cap-js/notifications`
+Sample app based on incident management [`@capire/incidents`](https://github.com/cap-js/incidents-app) for developing [`@cap-js/notifications`](https://www.npmjs.com/package/@cap-js/notifications)
 
 ## About
 
@@ -8,28 +8,7 @@ The `@cap-js/notifications` plugin allows you to send notifications to applicati
 
 ## Demo
 
-We demonstrate its use by **extending** the reference app and sending a notification when an incident is created using `@cap-js/notifications` plugin.
-
-### Prerequisites for Beta Testing
-
-1. Clone [add-notifications](https://github.tools.sap/cap/cds-dk/tree/add-notifications) branch of [cds-dk](https://github.tools.sap/cap/cds-dk) by: `git clone -b add-notifications https://github.tools.sap/cap/cds-dk.git`
-
-2. Change directory to the cloned repository and execute the following command to link the local copy of `cds-dk`: `npm link`.
-
-3. Clone the [Calesi](https://github.com/cap-js/calesi) repository: `git clone --recursive https://github.com/cap-js/calesi`
-
-4. Update dependencies of `samples/notifications` project.
-
-    ```diff
-    "dependencies": {
-    -    "@capire/incidents": "*",
-    -    "@cap-js/notifications": "*",
-    +    "@capire/incidents": "git+https://<GITHUB_TOOLS_PAT>:x-oauth-basic@github.tools.sap/cap/incidents-mgmt",
-    +    "@cap-js/notifications": "git+https://<GITHUB_PAT>:x-oauth-basic@github.com/cap-js/notifications#MVP",
-        "@sap/cds": "*",
-        "express": "^4"
-      }
-    ```
+We demonstrate its use by **extending** the [reference app](https://github.com/cap-js/incidents-app) and sending a notification when an incident is created using `@cap-js/notifications` plugin.
 
 ### Local Testing
 
@@ -67,23 +46,44 @@ We demonstrate its use by **extending** the reference app and sending a notifica
     - Example to send a notification of `default notification type with title only`. The default notification type is created by the `cap-js/notifications` plugin.
       ```js
       alert.notify({
-        recipients: recipients,
-        priority: priority,
-        title: title
+        recipients: ["admin1@test.com","admin2@test.com"],
+        priority: "HIGH",
+        title: "New incident is reported!"
       });
       ```
     - Example to send a notification of `default notification type with both title and description`.
       ```js
       alert.notify({
-        recipients: recipients,
-        priority: priority,
-        title: title,
-        description: description
+        recipients: ["supportuser1@test.com"],
+        priority: "HIGH",
+        title: "New high priority incident is assigned to you!",
+        description: "Incident titled 'Engine overheating' created by 'customer X' with priority high is assigned to you!"
       });
       ```
     - Example to create a notification of your custom notification type, just pass the complete notification object to this function.
       ```js
-      alert.notify(notification);
+      alert.notify({
+        NotificationTypeKey: 'IncidentCreated',
+        NotificationTypeVersion: '1',
+        Priority: 'NEUTRAL',
+        Properties: [
+          {
+            Key: 'name',
+            IsSensitive: false,
+            Language: 'en',
+            Value: 'Engine overheating',
+            Type: 'String'
+          },
+          {
+            Key: 'customer',
+            IsSensitive: false,
+            Language: 'en',
+            Value: 'John',
+            Type: 'String'
+          }
+        ],
+        Recipients: ["admin1@test.com","admin2@test.com"]
+      });
       ```
 
 In our demo, we are using the first method to send a notification when an incident is created. We use the second method to send a notification to inform that the incident is assigned to a processor. The third method is used to send a notification when the incident is closed by the processor.
