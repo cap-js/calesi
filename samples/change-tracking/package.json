@@ -9,8 +9,9 @@
     "@cap-js/sqlite": "*"
   },
   "cds": {
+    ">> NOTE <<": "This is only required for running cds w samples/change-tracking in this monorepo setup, not for real projects.",
     "requires": {
-      "@capire/change-tracking": {
+      "change-tracking extensions": {
         "model": "@capire/change-tracking/srv/change-tracking.cds"
       }
     }

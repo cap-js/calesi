@@ -1,4 +1,4 @@
-using {sap.capire.incidents as my} from '../db/extensions';
+using { sap.capire.incidents as my } from '../db/schema';
 
 annotate my.Customers with @PersonalData   : {
   EntitySemantics: 'DataSubject',
@@ -12,7 +12,7 @@ annotate my.Customers with @PersonalData   : {
   creditCardNo @PersonalData.IsPotentiallySensitive;
 }
 
-annotate my.Addresses with @PersonalData    : {EntitySemantics: 'DataSubjectDetails'} {
+annotate my.Addresses with @PersonalData : { EntitySemantics: 'DataSubjectDetails' } {
   customer      @PersonalData.FieldSemantics: 'DataSubjectID';
   city          @PersonalData.IsPotentiallyPersonal;
   postCode      @PersonalData.IsPotentiallyPersonal;

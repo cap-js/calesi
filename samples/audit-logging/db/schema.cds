@@ -1,8 +1,5 @@
+using { cuid, managed } from '@sap/cds/common';
 using from '@capire/incidents';
-using {
-  cuid,
-  managed
-} from '@sap/cds/common';
 
 entity sap.capire.incidents.Addresses : cuid, managed {
   customer      : Association to sap.capire.incidents.Customers;

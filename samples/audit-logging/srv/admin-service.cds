@@ -1,4 +1,4 @@
-using {sap.capire.incidents as my} from '../db/extensions';
+using { sap.capire.incidents as my } from '../db/schema';
 
 @requires: 'admin'
 service AdminService {
