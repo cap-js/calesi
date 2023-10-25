@@ -1,0 +1,12 @@
+{
+  "name": "@capire/telemetry",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/opentelemetry-instrumentation": "*",
+    "@capire/incidents": "*"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "*"
+  },
+  "private": true
+}
