@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {
     "@capire/incidents": "git+https://<GITHUB_TOOLS_PAT>:x-oauth-basic@github.tools.sap/cap/incidents-mgmt",
-    "@cap-js/alert-notification": "git+https://<GITHUB_PAT>:x-oauth-basic@github.com/cap-js/alert-notification#MVP",
+    "@cap-js/alert-notification": "git+https://<GITHUB_PAT>:x-oauth-basic@github.com/cap-js/notifications",
     "@sap/cds": "*",
     "express": "^4"
   },
