@@ -1,6 +1,6 @@
 # Sample App for Audit Logging
 
-Sample app based on the [Incident Management reference sample application](https://github.com/cap-js/incidents-app) for developing `@cap-js/audit-logging`.
+Sample app based on the [Incident Management reference sample application](https://github.com/cap-js/incidents-app) for showcasing `@cap-js/audit-logging`.
 
 ## Contents
 
