@@ -28,7 +28,12 @@
             "alice": {
               "policies": [
                 "cap.support (Not restricted)"
-              ]
+              ],
+              "roles": []
+            },
+            "bob": {
+              "policies": [],
+              "roles": []
             }
           },
           "ams": {

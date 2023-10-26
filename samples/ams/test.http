@@ -5,5 +5,10 @@
 # ProcessorService
 #
 
+### Access granted to alice due to existing policy
 GET {{host}}/odata/v4/processor/Incidents
 Authorization: Basic alice:wonderland
+
+### Access denied to bob due to missing policy
+GET {{host}}/odata/v4/processor/Incidents
+Authorization: Basic bob:builder
