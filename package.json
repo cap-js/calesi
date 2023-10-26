@@ -1,10 +1,9 @@
 {
   "workspaces": [
     "incidents-app",
+    "samples/ams",
     "samples/audit-logging",
     "samples/change-tracking",
-    "samples/notifications",
-    "samples/ams",
     "plugins/*"
   ]
 }
