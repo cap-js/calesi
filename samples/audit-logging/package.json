@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Sample app for developing @cap-js/audit-logging",
   "dependencies": {
-    "@capire/incidents": "*",
-    "@cap-js/audit-logging": "*"
+    "@cap-js/audit-logging": "*",
+    "@capire/incidents": "*"
   },
   "devDependencies": {
     "@cap-js/sqlite": "*"
