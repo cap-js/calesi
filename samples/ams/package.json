@@ -1,7 +1,7 @@
 {
   "name": "@capire/ams",
   "version": "1.0.0",
-  "description": "Sample app for showcasing AMS-based authentication",
+  "description": "Sample app for showcasing AMS-based authorization",
   "private": true,
   "dependencies": {
     "@capire/incidents": "*",
