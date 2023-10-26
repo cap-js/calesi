@@ -15,10 +15,9 @@ module.exports = class ProcessorService extends cds.ApplicationService {
     this.after ('CREATE', Incidents, async incident => {
       let customer = await customer4 (incident)
       await alert.notify({
-        recipients: ["alice@wonderland.org"],
-        priority: "HIGH",
+        recipients: ["alice@wonderland.org"], priority: "HIGH",
         title: `New incident created by ${customer.firstName} ${customer.lastName} (${customer.email})`,
-        description: `Incident Message: \n\n ${incident.title}`
+        description: incident.title
       })
     })
 
