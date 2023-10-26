@@ -1,0 +1,127 @@
+_schema-version: '3.1'
+ID: capire.incidents
+version: 1.0.0
+description: "incidents"
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - cds build --production
+        - cp notificationtypes.json gen/srv/
+        - bash build-ui.sh
+modules:
+  - name: notification-content-deployment
+    type: nodejs
+    path: gen/srv
+    parameters:
+      no-route: true
+      no-start: true
+      memory: 256MB
+      disk-quota: 256MB
+      tasks:
+        - name: notification-content-deployment
+          command: "node node_modules/@cap-js/notifications/lib/content-deployment.js"
+          memory: 256MB
+          disk-quota: 256MB
+    requires:
+      - name: incidents-destination
+  - name: incidents-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 256MB
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: incidents-auth
+      - name: incidents-db
+      - name: incidents-destination
+
+  - name: incidents-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 128MB
+    requires:
+      - name: incidents-db
+
+  - name: incidents-ui-resources
+    type: com.sap.application.content
+    path: gen/ui-resources
+    requires:
+      - name: incidents-html5-repo-host
+        parameters:
+          content-target: true
+
+  - name: incidents-destinations
+    type: com.sap.application.content
+    requires:
+      - name: incidents-auth
+        parameters:
+          service-key:
+            name: incidents-auth-key
+      - name: incidents-html5-repo-host
+        parameters:
+          service-key:
+            name: incidents-html5-repo-host-key
+      - name: srv-api
+      - name: incidents-destination
+        parameters:
+          content-target: true
+    parameters:
+      content:
+        instance:
+          destinations:
+            - Authentication: OAuth2UserTokenExchange
+              Name: incidents-srv
+              TokenServiceInstanceName: incidents-auth
+              TokenServiceKeyName: incidents-auth-key
+              URL: '~{srv-api/srv-url}'
+              sap.cloud.service: incidents.mgmt
+            - Name: incidents-html5-repo-host
+              ServiceInstanceName: incidents-html5-repo-host
+              ServiceKeyName: incidents-html5-repo-host-key
+              sap.cloud.service: incidents.mgmt
+            - Authentication: OAuth2UserTokenExchange
+              Name: incidents-auth
+              ServiceInstanceName: incidents-auth
+              ServiceKeyName: incidents-auth-key
+              sap.cloud.service: incidents.mgmt
+          existing_destinations_policy: update
+    build-parameters:
+      no-source: true
+resources:
+  - name: incidents-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: incidents-${org}-${space}
+        tenant-mode: dedicated
+  - name: incidents-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: incidents-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: app-host
+      service: html5-apps-repo
+  - name: incidents-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+      config:
+        HTML5Runtime_enabled: true

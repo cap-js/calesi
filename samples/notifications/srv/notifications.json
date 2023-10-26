@@ -1,0 +1,16 @@
+[
+  {
+    "NotificationTypeKey": "IncidentResolved",
+    "NotificationTypeVersion": "1",
+    "Templates": [
+      {
+        "Language": "en",
+        "TemplatePublic": "Incident Resolved",
+        "TemplateSensitive": "Incident '{{name}}' Resolved",
+        "TemplateGrouped": "Incident Status Update",
+        "TemplateLanguage": "mustache",
+        "Subtitle": "Incident '{{name}}' from '{{customer}}' resolved by Jarvis."
+      }
+    ]
+  }
+]
