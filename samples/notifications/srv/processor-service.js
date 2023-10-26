@@ -31,9 +31,10 @@ module.exports = class ProcessorService extends cds.ApplicationService {
           // REVISIT: Please let's rather use the simple API for that as well.
           // Otherwise we create the misconception that you always have to use
           // this API when using templates.
+          Recipients: [{ RecipientId: "alice@wonderland.org" }],
+          Priority: 'NEUTRAL',
           NotificationTypeKey: 'IncidentResolved',
           NotificationTypeVersion: '1',
-          Priority: 'NEUTRAL',
           Properties: [
             {
               Key: 'name',
@@ -50,7 +51,6 @@ module.exports = class ProcessorService extends cds.ApplicationService {
               Type: 'String'
             }
           ],
-          Recipients: [{ RecipientId: "alice@wonderland.org" }]
         })
       }
     })
