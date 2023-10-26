@@ -1,0 +1,46 @@
+{
+  "name": "@capire/ams-sample",
+  "version": "0.0.1",
+  "description": "Sample app for adding AMS-based authentication to the incidents management application",
+  "dependencies": {
+    "@capire/incidents": "*",
+    "@sap/ams": "*"
+  },
+  "devDependencies": {
+    "@sap/ams-dev": "*"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "private": true,
+  "sapux": [
+    "app/incidents"
+  ],
+  "cds": {
+    "requires": {
+      "[production]": {
+        "auth": {
+          "kind": "ias"
+        }
+      },
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "alice": {
+              "policies" : [
+                "cap.support (Not restricted)"
+            ]
+            }
+          },
+        "ams" : {
+            "autoCompile" : true,
+            "cache" : {
+                "TTL" : 0
+            }
+        }
+        }
+      }
+    }
+  }
+}
