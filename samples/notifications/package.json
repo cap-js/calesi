@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {
     "@capire/incidents": "*",
-    "@cap-js/alert-notification": "git+https://<GITHUB_PAT>:x-oauth-basic@github.com/cap-js/notifications",
+    "@cap-js/notifications": "*",
     "@sap/cds": "*",
     "express": "^4"
   },
@@ -15,9 +15,5 @@
   },
   "scripts": {
     "start": "cds-serve"
-  },
-  "cds": {
-    "requires": {
-    }
   }
 }
