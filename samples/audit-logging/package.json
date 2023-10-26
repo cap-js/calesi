@@ -4,9 +4,7 @@
   "description": "Sample app for developing @cap-js/audit-logging",
   "dependencies": {
     "@capire/incidents": "*",
-    "@cap-js/audit-logging": "*",
-    "@sap/cds": "*",
-    "express": "^4"
+    "@cap-js/audit-logging": "*"
   },
   "devDependencies": {
     "@cap-js/sqlite": "*"
