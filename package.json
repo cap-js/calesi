@@ -3,7 +3,6 @@
     "incidents-app",
     "samples/audit-logging",
     "samples/change-tracking",
-    "samples/notifications",
     "plugins/*"
   ]
 }
