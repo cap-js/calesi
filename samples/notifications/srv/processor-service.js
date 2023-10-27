@@ -12,12 +12,15 @@ module.exports = class ProcessorService extends cds.ApplicationService {
      * Send an ad-hoc notification when a new incident is created.
      */
     this.after ('CREATE', Incidents, async incident => {
-      let customer = await customer4 (incident)
+      let [ customer, supporters ] = await Promise.all ([
+        customer4 (incident),
+        supporters4 (incident)
+      ])
       await alert.notify ({
-        recipients: supporters(),
+        recipients: supporters,
+        priority: { H: 'HIGH', L: 'LOW' }[incident.urgency_code],
         title: `New incident created by ${customer.info}`,
         description: incident.title,
-        priority: incident.urgency === 'H' ? "HIGH" : incident.urgency === 'L' ? "LOW" : "NEUTRAL",
       })
     })
 
@@ -45,11 +48,12 @@ module.exports = class ProcessorService extends cds.ApplicationService {
         c.firstName, c.lastName, c.email
       })
       customer.info = `${customer.firstName} ${customer.lastName} (${customer.email})`
-      customer.id = cds.context.user.id // for demo purposes only
+      customer.id = cds.context.user.id // Fake customer id for demo purposes only
       return customer
     }
 
-    const supporters = () => [ cds.context.user.id ] // for demo purposes only
+    // Fake supporters for demo purposes
+    const supporters4 = () => [ cds.context.user.id ]
 
     // return super.init()
   }
