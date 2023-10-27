@@ -8,7 +8,7 @@ It contains:
 
 1. Addition of the plugin package as an npm dependency in `package.json`:
 
-   ```json
+   ```jsonc
    "dependencies": {
       "@capire/incidents": "*",
       "@cap-js/notifications": "*", // <-- added by npm add
