@@ -15,5 +15,4 @@ package-lock.json
 *.db
 
 plugins/*
-
 samples/ams/ams

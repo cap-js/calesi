@@ -12,61 +12,32 @@ module.exports = class ProcessorService extends cds.ApplicationService {
      * Send an ad-hoc notification when a new incident is created.
      */
     this.after ('CREATE', Incidents, async incident => {
-      let customer = await customer4 (incident)
-      await alert.notify({
-        recipients: ["alice@wonderland.org"], priority: "HIGH",
-        title: `New incident created by ${customer}`,
-        description: incident.title
+      let [ customer, supporters ] = await Promise.all ([
+        customer4 (incident),
+        supporters4 (incident)
+      ])
+      await alert.notify ({
+        recipients: supporters,
+        priority: { H: 'HIGH', L: 'LOW' }[incident.urgency_code],
+        title: `New incident created by ${customer.info}`,
+        description: incident.title,
       })
     })
 
     /**
      * Send a notification using a pre-defined template when an incident is resolved.
      */
-    this.after ('UPDATE', Incidents, async (incident, req) => {
+    this.after ('UPDATE', Incidents, async incident => {
       if (incident.status_code === 'C') {
-        await alert.notify({
-          recipients: [ "alice@wonderland.org" ],
-          type: 'IncidentResolved',
+        let customer = await customer4 (incident)
+        await alert.notify ('IncidentResolved', {
+          recipients: [ customer.id ],
           data: {
-            customer: await customer4 (incident),
+            customer: customer.info,
             title: incident.title,
-            user: req.user.id,
+            user: cds.context.user.id,
           }
         })
-        // // Alternatively doing the same using the low-level API like that:
-        // 0 && await alert.notify({
-        //   // REVISIT: Please let's rather use the simple API for that as well.
-        //   // Otherwise we create the misconception that you always have to use
-        //   // this API when using templates.
-        //   Recipients: [{ RecipientId: "alice@wonderland.org" }],
-        //   Priority: 'NEUTRAL',
-        //   NotificationTypeKey: 'IncidentResolved',
-        //   NotificationTypeVersion: '1',
-        //   Properties: [
-        //     {
-        //       Key: 'title',
-        //       IsSensitive: false,
-        //       Language: 'en',
-        //       Value: incident.title,
-        //       Type: 'String'
-        //     },
-        //     {
-        //       Key: 'customer',
-        //       IsSensitive: false,
-        //       Language: 'en',
-        //       Value: customer,
-        //       Type: 'String'
-        //     },
-        //     {
-        //       Key: 'user',
-        //       IsSensitive: false,
-        //       Language: 'en',
-        //       Value: req.user.id,
-        //       Type: 'String'
-        //     }
-        //   ],
-        // })
       }
     })
 
@@ -76,8 +47,13 @@ module.exports = class ProcessorService extends cds.ApplicationService {
       let customer = await SELECT.from (Customers, incident.customer_ID, c => {
         c.firstName, c.lastName, c.email
       })
-      return `${customer.firstName} ${customer.lastName} (${customer.email})`
+      customer.info = `${customer.firstName} ${customer.lastName} (${customer.email})`
+      customer.id = cds.context.user.id // Fake customer id for demo purposes only
+      return customer
     }
+
+    // Fake supporters for demo purposes
+    const supporters4 = () => [ cds.context.user.id ]
 
     // return super.init()
   }
