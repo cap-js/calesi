@@ -15,4 +15,6 @@ package-lock.json
 *.db
 
 plugins/*
+!plugins/notifications
+
 samples/ams/ams
