@@ -42,7 +42,7 @@ module.exports = class ProcessorService extends cds.ApplicationService {
     })
 
 
-    const { Customers } = cds.entities
+    const { Customers, Supporters } = cds.entities
     const customer4 = async incident => {
       let customer = await SELECT.from (Customers, incident.customer_ID, c => {
         c.firstName, c.lastName, c.email
@@ -53,7 +53,7 @@ module.exports = class ProcessorService extends cds.ApplicationService {
     }
 
     // Fake supporters for demo purposes
-    const supporters4 = () => [ cds.context.user.id ]
+    const supporters4 = () => SELECT('email').from(Supporters).then(each => each.email)
 
     // return super.init()
   }
