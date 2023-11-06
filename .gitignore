@@ -15,4 +15,3 @@ package-lock.json
 *.db
 
 plugins/*
-!plugins/notifications
