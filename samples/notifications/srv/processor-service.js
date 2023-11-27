@@ -42,7 +42,7 @@ module.exports = class ProcessorService extends cds.ApplicationService {
     })
 
 
-    const { Customers } = cds.entities
+    const { Customers } = this.entities
     const customer4 = async incident => {
       let customer = await SELECT.from (Customers, incident.customer_ID, c => {
         c.firstName, c.lastName, c.email
