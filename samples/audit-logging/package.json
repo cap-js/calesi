@@ -1,12 +1,11 @@
 {
   "name": "@capire/audit-logging",
-  "version": "0.0.1",
-  "description": "Sample app for developing @cap-js/audit-logging",
+  "version": "1.0.0",
+  "description": "Sample app for showcasing @cap-js/audit-logging",
+  "private": true,
   "dependencies": {
-    "@capire/incidents": "*",
     "@cap-js/audit-logging": "*",
-    "@sap/cds": "*",
-    "express": "^4"
+    "@capire/incidents": "*"
   },
   "devDependencies": {
     "@cap-js/sqlite": "*"
@@ -21,6 +20,5 @@
         "model": "@capire/audit-logging"
       }
     }
-  },
-  "private": true
+  }
 }

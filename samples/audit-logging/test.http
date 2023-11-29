@@ -7,11 +7,11 @@
 
 ### Reading sensitive data (creditCardNo) by default - NOT recommended!
 GET {{host}}/odata/v4/processor/Customers
-Authorization: Basic incident.support@tester.sap.com:initial
+Authorization: Basic alice:wonderland
 
 ### Recommendation: Avoid reading sensitive data by explicitly selecting the fields you need
 GET {{host}}/odata/v4/processor/Customers?$select=name
-Authorization: Basic incident.support@tester.sap.com:initial
+Authorization: Basic alice:wonderland
 
 #####
 #

@@ -1,0 +1,49 @@
+{
+  "name": "@capire/ams",
+  "version": "1.0.0",
+  "description": "Sample app for showcasing AMS-based authorization",
+  "private": true,
+  "dependencies": {
+    "@capire/incidents": "*",
+    "@sap/ams": "*"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "*",
+    "@sap/ams-dev": "*"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "[production]": {
+        "auth": {
+          "kind": "ias"
+        }
+      },
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "alice": {
+              "policies": [
+                "cap.support (Not restricted)"
+              ],
+              "roles": []
+            },
+            "bob": {
+              "policies": [],
+              "roles": []
+            }
+          },
+          "ams": {
+            "autoCompile": true,
+            "cache": {
+              "TTL": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}
