@@ -1,6 +1,8 @@
 {
   "name": "@capire/telemetry",
   "version": "1.0.0",
+  "description": "Sample app for showcasing @cap-js/opentelemetry-instrumentation",
+  "private": true,
   "dependencies": {
     "@cap-js/opentelemetry-instrumentation": "*",
     "@capire/incidents": "*"
@@ -8,5 +10,12 @@
   "devDependencies": {
     "@cap-js/sqlite": "*"
   },
-  "private": true
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "auth": "dummy"
+    }
+  }
 }
