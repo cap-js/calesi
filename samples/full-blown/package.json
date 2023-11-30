@@ -1,0 +1,47 @@
+{
+  "name": "@capire/full-blown",
+  "version": "1.0.0",
+  "dependencies": {
+    "@sap/cds-mtxs": "^1.12.1",
+    "@capire/full-blown": "*",
+    "@capire/incidents": "*"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "*"
+  },
+  "cds": {
+    ">> NOTE <<": "This is only required for running cds w samples/full-blown in this monorepo setup, not for real projects.",
+    "requires": {
+      "@capire/full-blown extensions": {
+        "model": "@capire/full-blown/srv/service.cds"
+      },
+      "auth": {
+        "users": {
+          "tom": {
+            "roles": [
+              "customer"
+            ]
+          }
+        }
+      },
+      "[with-mtx]": {
+        "multitenancy": true,
+        "extensibility": false,
+        "toggles": false    
+      }
+    },
+    "[with-mtx]": {
+      "requires": { 
+        "profile": "with-mtx-sidecar",
+        "auth": {
+          "users": {
+            "cust1": { "tenant": "t1", "roles": [ "cds.Subscriber", "customer" ] },
+            "cust2": { "tenant": "t2", "roles": [ "cds.Subscriber", "customer" ] }
+          }
+        } 
+      },
+      "server": { "port": 4005 }    
+    }
+  },
+  "private": true
+}

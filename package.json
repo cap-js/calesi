@@ -5,6 +5,7 @@
     "samples/audit-logging",
     "samples/change-tracking",
     "samples/notifications",
+    "samples/full-blown",
     "plugins/*"
   ]
 }
