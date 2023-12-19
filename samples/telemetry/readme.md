@@ -1,4 +1,4 @@
-# Sample App for OpenTelemetry Instrumentation
+# Sample App for `@cap-js/telemetry`
 
 Sample app based on the [Incident Management reference sample application](https://github.com/cap-js/incidents-app) for showcasing `@cap-js/telemetry`.
 
