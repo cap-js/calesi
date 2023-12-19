@@ -31,6 +31,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: calesi-telemetry-db
+      - name: calesi-telemetry-logging
       - name: calesi-telemetry-dynatrace
         parameters:
           config:
@@ -44,5 +45,10 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: calesi-telemetry-logging
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: application-logs
+      service-plan: lite
   - name: calesi-telemetry-dynatrace
     type: org.cloudfoundry.existing-service
