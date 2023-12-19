@@ -1,0 +1,48 @@
+_schema-version: '3.1'
+ID: calesi-telemetry
+version: 1.0.0
+description: "Sample app for showcasing @cap-js/telemetry"
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx cds build --production
+        - npm run add_remote_incidents
+modules:
+  - name: calesi-telemetry-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: calesi-telemetry-db
+  - name: calesi-telemetry-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: calesi-telemetry-db
+      - name: calesi-telemetry-dynatrace
+        parameters:
+          config:
+            tokens:
+              - name: metrics_apitoken
+                scopes:
+                  - metrics.ingest
+resources:
+  - name: calesi-telemetry-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: calesi-telemetry-dynatrace
+    type: org.cloudfoundry.existing-service
