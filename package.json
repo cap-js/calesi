@@ -5,6 +5,10 @@
     "samples/audit-logging",
     "samples/change-tracking",
     "samples/notifications",
+    "samples/telemetry",
     "plugins/*"
-  ]
+  ],
+  "scripts": {
+    "rm:cds": "rm -rf node_modules/@sap/cds && rm -rf node_modules/@sap/cds-*"
+  }
 }
