@@ -10,4 +10,6 @@ Sample app based on the [Incident Management reference sample application](https
 1. `cds w samples/telemetry`
 1. execute example request in `test.http` and find a trace printed to the console
 
+## Troubleshooting
+
 In case you get warning "Package '@sap/cds' was loaded from different installations" (e.g., if you have the cap/dev setup on your machine), run `npm run rm:cds`.
