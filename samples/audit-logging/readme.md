@@ -18,3 +18,9 @@ Example OData requests for:
 
 - `ProcessorService`: reading sensitive data and, more importantly, how to avoid it
 - `AdminService`: modifying personal data
+
+## Deploy to BTP CF
+
+1. `cf l` to target landscape
+1. If you want to deploy to an SAP account: In mta.yaml, change plan of `calesi-audit-logging-auditlog` from `premium` to `oauth2`
+1. `npm run deploy`

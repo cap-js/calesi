@@ -1,0 +1,55 @@
+_schema-version: '3.1'
+ID: calesi-audit-logging
+version: 1.0.0
+description: "Sample app for showcasing @cap-js/audit-logging"
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx cds build --production
+        - npm run add_remote_incidents
+modules:
+  - name: calesi-audit-logging-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: calesi-audit-logging-auth
+      - name: calesi-audit-logging-db
+      - name: calesi-audit-logging-auditlog
+  - name: calesi-audit-logging-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: calesi-audit-logging-db
+resources:
+  - name: calesi-audit-logging-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: audit-logging-${org}-${space}
+        tenant-mode: dedicated
+  - name: calesi-audit-logging-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: calesi-audit-logging-auditlog
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: auditlog
+      service-plan: premium
