@@ -13,54 +13,5 @@ mta_archives
 *.db
 
 plugins/*
+demo/*
 samples/ams/ams
-demo/package.json
-demo/readme.md
-demo/_i18n/i18n.properties
-demo/app/index.cds
-demo/app/incidents/annotations.cds
-demo/app/incidents/package.json
-demo/app/incidents/README.md
-demo/app/incidents/ui5.yaml
-demo/app/incidents/webapp/Component.js
-demo/app/incidents/webapp/index.html
-demo/app/incidents/webapp/manifest.json
-demo/app/incidents/webapp/xs-app.json
-demo/app/incidents/webapp/i18n/i18n.properties
-demo/app/incidents/webapp/test/flpSandbox.html
-demo/app/incidents/webapp/test/testsuite.qunit.html
-demo/app/incidents/webapp/test/testsuite.qunit.js
-demo/app/incidents/webapp/test/integration/FirstJourney.js
-demo/app/incidents/webapp/test/integration/opaTests.qunit.html
-demo/app/incidents/webapp/test/integration/opaTests.qunit.js
-demo/app/incidents/webapp/test/integration/pages/ConversationsObjectPage.js
-demo/app/incidents/webapp/test/integration/pages/IncidentsList.js
-demo/app/incidents/webapp/test/integration/pages/IncidentsObjectPage.js
-demo/db/attachments.cds
-demo/db/schema.cds
-demo/db/content/Broken Solar Panel.jpg
-demo/db/content/Customer Avatars.jpg
-demo/db/content/Daniel Watts.png
-demo/db/content/INVERTER FAULT REPORT.pdf
-demo/db/content/Inverter-error-logs.txt
-demo/db/content/No_current.xlsx
-demo/db/content/Solar Panel Report.pdf
-demo/db/content/Stormy Weathers.png
-demo/db/content/strange-noise.csv
-demo/db/content/Sunny Sunshine.png
-demo/db/data/sap.capire.incidents-Customers.csv
-demo/db/data/sap.capire.incidents-Incidents.conversation.csv
-demo/db/data/sap.capire.incidents-Incidents.csv
-demo/db/data/sap.capire.incidents-Status.csv
-demo/db/data/sap.capire.incidents-Urgency.csv
-demo/db/data/sap.common-Attachments.csv
-demo/srv/change-tracking.cds
-demo/srv/data-privacy.cds
-demo/srv/notification-types.json
-demo/srv/notifications.js
-demo/srv/services.cds
-demo/srv/services.js
-demo/test/ams-tests.http
-demo/test/audit-logging.http
-demo/test/basics.test.js
-demo/test/drafts.test.js
