@@ -1,9 +1,0 @@
-@host = http://localhost:4004
-
-#####
-#
-# ProcessorService
-#
-
-GET {{host}}/odata/v4/processor/Incidents
-Authorization: Basic alice:wonderland
