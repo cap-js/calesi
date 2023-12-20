@@ -1,14 +1,9 @@
 {
   "workspaces": [
     "incidents-app",
-    "samples/ams",
-    "samples/audit-logging",
-    "samples/change-tracking",
-    "samples/notifications",
-    "samples/telemetry",
     "plugins/*"
   ],
   "scripts": {
-    "rm:cds": "rm -rf node_modules/@sap/cds && rm -rf node_modules/@sap/cds-*"
+    "in-cap-dev": "cd node_modules && rm -fr @sap/cds* @cap-js/db-service @cap-js/sqlite"
   }
 }
