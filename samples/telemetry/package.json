@@ -4,13 +4,40 @@
   "description": "Sample app for showcasing @cap-js/telemetry",
   "private": true,
   "dependencies": {
+    "@cap-js/hana": "^0.0.2",
     "@cap-js/telemetry": "*",
-    "@capire/incidents": "*"
+    "@capire/incidents": "*",
+    "@dynatrace/oneagent-sdk": "^1.5.0",
+    "@opentelemetry/exporter-metrics-otlp-proto": "^0.46.0",
+    "@opentelemetry/exporter-trace-otlp-proto": "^0.46.0"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "*"
+    "@cap-js/sqlite": "*",
+    "@sap/cds-dk": "^7"
   },
   "scripts": {
+    "add_remote_incidents": "cd gen/srv && npm add @capire/incidents@git://github.com/cap-js/incidents-app",
+    "deploy": "mbt build -t gen --mtar mta.tar && cf deploy gen/mta.tar",
     "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "[production]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "alice": {
+              "roles": ["support", "admin"]
+            }
+          }
+        },
+        "db": {
+          "impl": "@cap-js/hana"
+        },
+        "telemetry": {
+          "kind": "to-dynatrace"
+        }
+      }
+    }
   }
 }
