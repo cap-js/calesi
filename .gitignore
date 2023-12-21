@@ -15,3 +15,4 @@ mta_archives
 plugins/*
 demo/*
 samples/ams/ams
+package-lock.json
