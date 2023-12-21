@@ -1,83 +1,56 @@
-# CAP Reference Apps for Calesi
+# Workspace Repo for Calesi Projects
 
-Welcome to the reference app monorepo for Calesi projects ("Calesi" stands for CAP-level Service Interfaces).
+We use this repo to develop, test and demo the calesi plugins. It is a monorepo with two workspaces configured in `package.json`:
 
-We use this repository to develop both, the basic reference application on an incidents management use case, as well as enhancements to that showcasing how to use individual BTP services and features.
+```jsonc
+"workspaces": [
+  "incidents-app",
+  "plugins/*"
+],
+```
 
-The folders in here are:
+- **`incidents-app`** is the reference app we use to showcase all calesi effects; added here as a *git submodule*.
+- **`plugins/*`**  is place to put in your CAP plugin packages; as standard *git clones*.
 
-- **`incidents-app`**
-
-    The incidents base application used for all examples
-
-- **`samples/...`**
-
-    Enhancements to the incidents-app showcasing how to use individual services, like change tracking, audit logging, messaging, and so forth...
-
-- **`plugins/...`**
-
-    A place to put in your CAP plugin packages to be used
-
-As a monorepo it allows to refer to all packages in one of the above folders.
+As a monorepo it allows to refer to all packages in one of the above folders with standard npm dependencies. This is particularly helpful when your plugin is not yet published. 
 
 
 
-## Setup
+## Clone the monorepo
 
 To get started clone the repository and run npm install:
 
 ```sh
 git clone --recursive https://github.com/cap-js/calesi.git
-cd calesi
+```
+
+
+
+## Add a Pugin
+
+Add your work-in-progress plugin repo into the `./plugins` folder:
+
+```sh
+git clone https://github.com/cap-js/attachments.git plugins/attachments
+```
+
+
+
+## Use it with Ref App
+
+Use your plugin with the enclosed `incidents-app`  as if it had been released already:
+
+```sh
+cd incidents-app
 ```
 
 ```sh
-npm i
+npm add @cap-js/attachments #> will be linked to ../plugins/attachements
 ```
-
-
-
-## Run
-
-Run the basic incidents app:
 
 ```sh
-cds w incidents-app
+cds watch #... as usual
 ```
 
-Run the incidents app with **one** of the enhancements:
+Go on adding plugin-specific content...
 
-```sh
-cds w samples/change-tracking
-```
-
-
-
-## Compose
-
-In order to run the incidents app with more than one enhancement...
-
-- TODO...
-
-## Deploy
-
-- TODO...
-
-
-
-## Contribute
-
-Follow these steps to add a new Calesi case:
-
-1. Clone this repository as given above
-1. Add a new subfolder in `samples/`, e.g.:
-   ```sh
-   cds init samples/change-tracking
-   ```
-1. Add the plugin
-    1. If the service plugin is not yet released, clone the repo into a respective subfolder in `plugins/`, e.g.
-        ```sh
-        git clone https://github.com/cap-js/change-tracking plugins/change-tracking
-        ```
-    1. If/ once the plugin is released, add the root package.json's workspaces config, i.e., `samples/<plugin>`
-1. Run `npm install` to npm link all dependencies
