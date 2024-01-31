@@ -1,6 +1,6 @@
 {
   "workspaces": [
-    "incidents-app",
+    "incidents-mgmt",
     "plugins/*"
   ],
   "scripts": {
