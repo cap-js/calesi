@@ -4,3 +4,6 @@
 [submodule "plugins/change-tracking"]
 	path = plugins/change-tracking
 	url = https://github.com/cap-js/change-tracking.git
+[submodule "plugins/attachments"]
+	path = plugins/attachments
+	url = https://github.com/cap-js/attachments.git
