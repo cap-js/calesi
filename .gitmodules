@@ -1,3 +1,6 @@
 [submodule "incidents-app"]
 	path = incidents-app
 	url = https://github.com/cap-js/incidents-app.git
+[submodule "plugins/change-tracking"]
+	path = plugins/change-tracking
+	url = https://github.com/cap-js/change-tracking.git
