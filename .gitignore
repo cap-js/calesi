@@ -12,7 +12,6 @@ mta_archives
 *.sqlite
 *.db
 
-plugins/*
 demo/*
 samples/ams/ams
 package-lock.json
